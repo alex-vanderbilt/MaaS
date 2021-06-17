@@ -1,0 +1,1105 @@
+# This is an example reply to the following endpoint: /v2/movies/views/now-playing
+
+{
+  "pageSize": 10,
+  "pageNumber": 1,
+  "count": 28,
+  "_links": {
+    "self": {
+      "href": "https://api.amctheatres.com/v2/movies/views/now-playing?ids=65421,66219,65955,66268,65844,66054,66398,65926,56630&exclude-attributes=VR&page-number=1&page-size=10",
+      "templated": false
+    },
+    "next": {
+      "href": "https://api.amctheatres.com/v2/movies/views/now-playing?ids=65421,66219,65955,66268,65844,66054,66398,65926,56630&exclude-attributes=VR&page-number=2&page-size=10",
+      "templated": false
+    }
+  },
+  "_embedded": {
+    "movies": [
+      {
+        "id": 66408,
+        "name": "The Hitman's Wife's Bodyguard",
+        "sortableName": "Hitman's Wife's Bodyguard, The",
+        "starringActors": "Ryan Reynolds, Salma Hayek, Samuel L. Jackson",
+        "directors": "Patrick Hughes",
+        "genre": "ACTION",
+        "mpaaRating": "R",
+        "wwmReleaseNumber": 305638,
+        "runTime": 99,
+        "score": 0.0201,
+        "slug": "the-hitman-s-wife-s-bodyguard-66408",
+        "synopsis": "The world's most lethal odd couple -- bodyguard Michael Bryce (Ryan Reynolds) and hitman Darius Kincaid (Samuel L. Jackson) -- are back on another life-threatening mission. Still unlicensed and under scrutiny, Bryce is forced into action by Darius's even more volatile wife, the infamous international con artist Sonia Kincaid (Salma Hayek). As Bryce is driven over the edge by his two most dangerous protectees, the trio get in over their heads in a global plot and soon find that they are all that stand between Europe and a vengeful and powerful madman (Antonio Banderas).  Joining in the fun and deadly mayhem is Morgan Freeman as... well, you'll have to see.",
+        "releaseDateUtc": "2021-06-16T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-16T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/the-hitman-s-wife-s-bodyguard-66408",
+        "showtimesUrl": "http://www.amctheatres.com/movies/the-hitman-s-wife-s-bodyguard-66408/showtimes",
+        "synopsisTagLine": "Killer threesome.",
+        "distributorId": 2189,
+        "distributorCode": "LGF",
+        "availableForAList": true,
+        "imdbId": "tt8385148",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DBOX",
+            "name": "D-Box",
+            "description": "Technology allowing theatre seats to move in sync with the action in a film."
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "IMAX",
+            "name": "IMAX at AMC",
+            "description": "Film format/projection standards for recording/displaying images of greater size and resolution."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6254043663001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6254043663001.mp4",
+          "primaryTrailerExternalVideoId": "6254043663001",
+          "primaryTrailerVideoId": "11998",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1623495717/amc-cdn/production/2/movies/66400/66408/MovieStills/305638RD.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1623495717/amc-cdn/production/2/movies/66400/66408/MovieStills/305638RD.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1620917592/amc-cdn/production/2/movies/66400/66408/PosterDynamic/124179.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66408",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66408/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66408/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66408/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 58175,
+        "name": "A Quiet Place Part II",
+        "sortableName": "Quiet Place Part II, A",
+        "starringActors": "Emily Blunt",
+        "directors": "John Krasinski",
+        "genre": "SUSPENSE",
+        "mpaaRating": "PG13",
+        "wwmReleaseNumber": 295508,
+        "runTime": 97,
+        "score": 0.06345,
+        "slug": "a-quiet-place-part-ii-58175",
+        "synopsis": "Following the deadly events at home, the Abbott family (Emily Blunt, Millicent Simmonds, Noah Jupe) must now face the terrors of the outside world as they continue their fight for survival in silence.  Forced to venture into the unknown, they quickly realize that the creatures that hunt by sound are not the only threats that lurk beyond the sand path.",
+        "releaseDateUtc": "2021-05-28T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-05-28T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/a-quiet-place-part-ii-58175",
+        "showtimesUrl": "http://www.amctheatres.com/movies/a-quiet-place-part-ii-58175/showtimes",
+        "synopsisTagLine": "Silence is Not Enough",
+        "distributorId": 2337,
+        "distributorCode": "PAR",
+        "availableForAList": true,
+        "imdbId": "tt8332922",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DBOX",
+            "name": "D-Box",
+            "description": "Technology allowing theatre seats to move in sync with the action in a film."
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "IMAX",
+            "name": "IMAX at AMC",
+            "description": "Film format/projection standards for recording/displaying images of greater size and resolution."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6252924172001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6252924172001.mp4",
+          "primaryTrailerExternalVideoId": "6252924172001",
+          "primaryTrailerVideoId": "11979",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1583838162/amc-cdn/production/2/movies/58200/58175/MovieStills/295508RK.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1583838162/amc-cdn/production/2/movies/58200/58175/MovieStills/295508RK.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1620406013/amc-cdn/production/2/movies/58200/58175/PosterDynamic/124043.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "9508",
+          "onDemandTrailerExternalVideoId": "6140799018001",
+          "onDemandPosterDynamic": "https://amc-theatres-res.cloudinary.com/v1622894799/amc-cdn/production/2/movies/58200/58175/Poster/AquietPlacePartIIPromoTRL_06032021.jpg",
+          "onDemandTrailerMp4Dynamic": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6140799018001.mp4",
+          "onDemandTrailerHdDynamic": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6140799018001.mp4"
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/58175",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/58175/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/58175/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/58175/cast-crew",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v1/on-demand-products": {
+            "href": "https://api.amctheatres.com/v1/movies/58175/on-demand-products",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/movie/on-demand/similar": {
+            "href": "https://api.amctheatres.com/v2/movies/58175/on-demand/similar",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66108,
+        "name": "In The Heights",
+        "sortableName": "In The Heights",
+        "starringActors": "Anthony Ramos, COREY HAWKINS, LESLIE GRACE",
+        "directors": "JON M. CHU",
+        "genre": "MUSICAL",
+        "mpaaRating": "PG13",
+        "wwmReleaseNumber": 274190,
+        "runTime": 143,
+        "score": 0.011799,
+        "slug": "in-the-heights-66108",
+        "synopsis": "The creator of 'Hamilton' and the director of CRAZY RICH ASIANS invite you to a cinematic event, where the streets are made of music and little dreams become big.  Lights up on Washington Heights.  The scent of a cafecito caliente hangs in the air just outside of the 181st Street subway stop, where a kaleidoscope of dreams rallies this vibrant and tight-knit community.  At the intersection of it all is the likeable, magnetic bodega owner Usnavi (Anthony Ramos), who saves every penny from his daily grind as he hopes, imagines and sings about a better life. IN THE HEIGHTS fuses Lin-Manuel Miranda's kinetic music and lyrics with director Jon M. Chu's lively and authentic eye for storytelling to capture a world very much of its place, but universal in its experience.",
+        "releaseDateUtc": "2021-06-11T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-11T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/in-the-heights-66108",
+        "showtimesUrl": "http://www.amctheatres.com/movies/in-the-heights-66108/showtimes",
+        "synopsisTagLine": "Turn Up the Volume on Your Dreams",
+        "distributorId": 2429,
+        "distributorCode": "WB",
+        "availableForAList": true,
+        "imdbId": "tt1321510",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCARTISANFILMS",
+            "name": "AMC Artisan Films",
+            "description": "AMC Artisan Films"
+          },
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DBOX",
+            "name": "D-Box",
+            "description": "Technology allowing theatre seats to move in sync with the action in a film."
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "IMAX",
+            "name": "IMAX at AMC",
+            "description": "Film format/projection standards for recording/displaying images of greater size and resolution."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6240741251001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6240741251001.mp4",
+          "primaryTrailerExternalVideoId": "6240741251001",
+          "primaryTrailerVideoId": "11858",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1620298904/amc-cdn/production/2/movies/66100/66108/MovieStills/274190R7.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1620298904/amc-cdn/production/2/movies/66100/66108/MovieStills/274190R7.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1622225882/amc-cdn/production/2/movies/66100/66108/PosterDynamic/124588.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66108",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66108/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66108/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66108/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66487,
+        "name": "Peter Rabbit 2: The Runaway",
+        "sortableName": "Peter Rabbit 2: The Runaway",
+        "starringActors": "Domhnall Gleeson, James Corden, Rose Byrne",
+        "directors": "PATRICK BURLEIGH, Will Gluck",
+        "genre": "FAMILY",
+        "mpaaRating": "PG",
+        "wwmReleaseNumber": 272133,
+        "runTime": 93,
+        "score": 0.009675,
+        "slug": "peter-rabbit-2-the-runaway-66487",
+        "synopsis": "In PETER RABBIT 2: THE RUNAWAY, the lovable rogue is back. Bea, Thomas, and the rabbits have created a makeshift family, but despite his best efforts, Peter can't seem to shake his mischievous reputation. Adventuring out of the garden, Peter finds himself in a world where his mischief is appreciated, but when his family risks everything to come looking for him, Peter must figure out what kind of bunny he wants to be.",
+        "releaseDateUtc": "2021-06-11T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-11T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/peter-rabbit-2-the-runaway-66487",
+        "showtimesUrl": "http://www.amctheatres.com/movies/peter-rabbit-2-the-runaway-66487/showtimes",
+        "synopsisTagLine": "The Garden Was Small Potatoes.",
+        "distributorId": 2420,
+        "distributorCode": "SON",
+        "availableForAList": true,
+        "imdbId": "tt8376234",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          },
+          {
+            "code": "SENSORYFRIENDLY",
+            "name": "Sensory Friendly Film",
+            "description": "Sensory Friendly Film."
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6255261832001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6255261832001.mp4",
+          "primaryTrailerExternalVideoId": "6255261832001",
+          "primaryTrailerVideoId": "12010",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1623250671/amc-cdn/production/2/movies/66500/66487/MovieStillDynamic/124798.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1623250671/amc-cdn/production/2/movies/66500/66487/MovieStillDynamic/124798.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1621266640/amc-cdn/production/2/movies/66500/66487/PosterDynamic/124271.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66487",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66487/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66487/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66487/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66336,
+        "name": "Rita Moreno: Just a Girl Who Decided to Go For It",
+        "sortableName": "Rita Moreno: Just a Girl Who Decided to Go For It",
+        "starringActors": "RITA MORENO",
+        "directors": "MARIEM PEREZ RIERA",
+        "genre": "DOCUMENTARY",
+        "mpaaRating": "PG13",
+        "wwmReleaseNumber": 315851,
+        "runTime": 90,
+        "score": 0.000504,
+        "slug": "rita-moreno-just-a-girl-who-decided-to-go-for-it-66336",
+        "synopsis": "A look at the life and 70+ year career of Rita Moreno from her humble beginnings in Puerto Rico to her success on Broadway and in Hollywood where she broke down barriers, fought for representation and forged a path for new generations of artists.",
+        "releaseDateUtc": "2021-06-18T05:00:00Z",
+        "earliestShowingUtc": "2021-06-17T14:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-18T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/rita-moreno-just-a-girl-who-decided-to-go-for-it-66336",
+        "showtimesUrl": "http://www.amctheatres.com/movies/rita-moreno-just-a-girl-who-decided-to-go-for-it-66336/showtimes",
+        "distributorId": 2273,
+        "distributorCode": "RSA",
+        "availableForAList": true,
+        "imdbId": "tt10741846",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Unavailable",
+        "attributes": [
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6256545221001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6256545221001.mp4",
+          "primaryTrailerExternalVideoId": "6256545221001",
+          "primaryTrailerVideoId": "12043",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1622286164/amc-cdn/production/2/movies/66300/66336/MovieStills/315851R4.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1622286164/amc-cdn/production/2/movies/66300/66336/MovieStills/315851R4.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1622286165/amc-cdn/production/2/movies/66300/66336/Poster/315851R1.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66336",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66336/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66336/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66336/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66107,
+        "name": "The Conjuring: The Devil Made Me Do It",
+        "sortableName": "Conjuring: The Devil Made Me Do It, The",
+        "starringActors": "JULIAN HILLIARD, Patrick Wilson, Vera Farmiga",
+        "directors": "MICHAEL CHAVES",
+        "genre": "HORROR",
+        "mpaaRating": "R",
+        "wwmReleaseNumber": 292536,
+        "runTime": 112,
+        "score": 0.021413,
+        "slug": "the-conjuring-the-devil-made-me-do-it-66107",
+        "synopsis": "THE CONJURING: THE DEVIL MADE ME DO IT reveals a chilling story of terror, murder and unknown evil that shocked even experienced real-life paranormal investigators Ed and Lorraine Warren. One of the most sensational cases from their files, it starts with a fight for the soul of a young boy, then takes them beyond anything they'd ever seen before, to mark the first time in U.S. history that a murder suspect would claim demonic possession as a defense.",
+        "releaseDateUtc": "2021-06-04T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-04T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/the-conjuring-the-devil-made-me-do-it-66107",
+        "showtimesUrl": "http://www.amctheatres.com/movies/the-conjuring-the-devil-made-me-do-it-66107/showtimes",
+        "synopsisTagLine": "The demonic case that shocked America.",
+        "distributorId": 2429,
+        "distributorCode": "WB",
+        "availableForAList": true,
+        "imdbId": "tt7069210",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DBOX",
+            "name": "D-Box",
+            "description": "Technology allowing theatre seats to move in sync with the action in a film."
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "IMAX",
+            "name": "IMAX at AMC",
+            "description": "Film format/projection standards for recording/displaying images of greater size and resolution."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6256953726001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6256953726001.mp4",
+          "primaryTrailerExternalVideoId": "6256953726001",
+          "primaryTrailerVideoId": "12049",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1620903698/amc-cdn/production/2/movies/66100/66107/MovieStills/317964R5.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1620903698/amc-cdn/production/2/movies/66100/66107/MovieStills/317964R5.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1619101079/amc-cdn/production/2/movies/66100/66107/PosterDynamic/123570.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66107",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66107/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66107/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66107/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 56472,
+        "name": "Cruella",
+        "sortableName": "Cruella",
+        "starringActors": "Emma Stone",
+        "directors": "CRAIG GILLESPIE",
+        "genre": "FAMILY",
+        "mpaaRating": "PG13",
+        "wwmReleaseNumber": 292812,
+        "runTime": 134,
+        "score": 0.02665,
+        "slug": "cruella-56472",
+        "synopsis": "Academy Award\u00ae winner Emma Stone (\u201cLa La Land\u201d) stars in Disney\u2019s \u201cCruella,\u201d an all-new live-action feature film about the rebellious early days of one of cinemas most notorious \u2013 and notoriously fashionable \u2013 villains, the legendary Cruella de Vil. \u201cCruella,\u201d which is set in 1970s London amidst the punk rock revolution, follows a young grifter named Estella, a clever and creative girl determined to make a name for herself with her designs. She befriends a pair of young thieves who appreciate her appetite for mischief, and together they are able to build a life for themselves on the London streets. One day, Estella\u2019s flair for fashion catches the eye of the Baroness von Hellman, a fashion legend who is devastatingly chic and terrifyingly haute, played by two-time Oscar\u00ae winner Emma Thompson (\u201cHowards End,\u201d \u201cSense & Sensibility\u201d). But their relationship sets in motion a course of events and revelations that will cause Estella to embrace her wicked side and become the raucous, fashionable and revenge-bent Cruella. CRUELLA contains several sequences with flashing lights that may affect those who are susceptible to photosensitive epilepsy or have other photosensitivities.",
+        "releaseDateUtc": "2021-05-28T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-05-28T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/cruella-56472",
+        "showtimesUrl": "http://www.amctheatres.com/movies/cruella-56472/showtimes",
+        "synopsisTagLine": "Hello cruel world.",
+        "distributorId": 2369,
+        "distributorCode": "BVD",
+        "availableForAList": true,
+        "imdbId": "tt3228774",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "AMCPRIME",
+            "name": "PRIME at AMC",
+            "description": "Enhanced sensory technology and premium comfort blend promoting total emersion in a film."
+          },
+          {
+            "code": "BIGD",
+            "name": "BigD",
+            "description": "BigD PLF"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "DISNEYRWDS",
+            "name": "Pay with Disney Rewards Redemption Card",
+            "description": "Eligible for Disney Rewards Tender option"
+          },
+          {
+            "code": "DOLBYCINEMAATAMCPRIME",
+            "name": "Dolby Cinema at AMC",
+            "description": "Dolby Cinema at AMC"
+          },
+          {
+            "code": "GDX",
+            "name": "GDX",
+            "description": "Premium large format theater experience, crystal clear picture, and Dolby Atmos sound."
+          },
+          {
+            "code": "GXL",
+            "name": "GXL",
+            "description": "Immense screens, 4K super HD projection, extra-wide rows, and superior sound."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6247205729001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6247205729001.mp4",
+          "primaryTrailerExternalVideoId": "6247205729001",
+          "primaryTrailerVideoId": "11909",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1620126114/amc-cdn/production/2/movies/56500/56472/MovieStills/292812R7.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1620126114/amc-cdn/production/2/movies/56500/56472/MovieStills/292812R7.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1617805528/amc-cdn/production/2/movies/56500/56472/PosterDynamic/123209.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/56472",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/56472/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/56472/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/56472/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 61921,
+        "name": "Spirit Untamed",
+        "sortableName": "Spirit Untamed",
+        "starringActors": "ISABELA MERCED, Jake Gyllenhaal, Julianne Moore",
+        "directors": "ELAINE BOGAN, ENNIO TORRESAN",
+        "genre": "ANIMATION",
+        "mpaaRating": "PG",
+        "wwmReleaseNumber": 314473,
+        "runTime": 88,
+        "score": 0.0056791,
+        "slug": "spirit-untamed-61921",
+        "synopsis": "An epic adventure about a headstrong girl longing for a place to belong who discovers a kindred spirit when her life intersects with a wild horse, Spirit Untamed is the next chapter in the beloved story from DreamWorks Animation.",
+        "releaseDateUtc": "2021-06-04T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-04T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/spirit-untamed-61921",
+        "showtimesUrl": "http://www.amctheatres.com/movies/spirit-untamed-61921/showtimes",
+        "distributorId": 2284,
+        "distributorCode": "UI",
+        "availableForAList": true,
+        "imdbId": "tt11084896",
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          },
+          {
+            "code": "SENSORYFRIENDLY",
+            "name": "Sensory Friendly Film",
+            "description": "Sensory Friendly Film."
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6245742479001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6245742479001.mp4",
+          "primaryTrailerExternalVideoId": "6245742479001",
+          "primaryTrailerVideoId": "11892",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1619521328/amc-cdn/production/2/movies/61900/61921/MovieStills/314473RA.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1619521328/amc-cdn/production/2/movies/61900/61921/MovieStills/314473RA.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1617205442/amc-cdn/production/2/movies/61900/61921/PosterDynamic/123035.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/61921",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/61921/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/61921/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/61921/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66559,
+        "name": "The House Next Door: Meet The Blacks 2",
+        "sortableName": "The House Next Door: Meet The Blacks 2",
+        "starringActors": "Katt Williams, MIKE EPPS",
+        "directors": "DEON TAYLOR",
+        "genre": "COMEDY",
+        "mpaaRating": "R",
+        "wwmReleaseNumber": 317472,
+        "runTime": 97,
+        "score": 0.0,
+        "slug": "the-house-next-door-meet-the-blacks-2-66559",
+        "synopsis": "From Beverly Hills to the Chicago 'burbs, mayhem and hilarity seem to follow The Blacks wherever they go. After surviving a night of terror on the West Coast, (not-so) best-selling author Carl Black (Mike Epps) moves his family back to his childhood home in the Windy City where he hopes to find the peace and quiet he needs to write his new book. But when an eccentric neighbor (Katt Williams) moves in next door, Carl becomes convinced that the man is a vampire trying to take his family, and must team up with his oddball neighbors to save his career and their lives!",
+        "releaseDateUtc": "2021-06-11T05:00:00Z",
+        "earliestShowingUtc": "1900-01-01T00:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-11T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/the-house-next-door-meet-the-blacks-2-66559",
+        "showtimesUrl": "http://www.amctheatres.com/movies/the-house-next-door-meet-the-blacks-2-66559/showtimes",
+        "distributorId": 2229,
+        "distributorCode": "VAR",
+        "availableForAList": true,
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Tier1",
+        "attributes": [
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "PRVTADTKT",
+            "name": "Private Rental Adult Ticket Pricing"
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6254996877001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6254996877001.mp4",
+          "primaryTrailerExternalVideoId": "6254996877001",
+          "primaryTrailerVideoId": "12006",
+          "heroDesktopDynamic": "",
+          "heroMobileDynamic": "",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1622128487/amc-cdn/production/2/movies/66600/66559/PosterDynamic/124533.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66559",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66559/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66559/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66559/cast-crew",
+            "templated": false
+          }
+        }
+      },
+      {
+        "id": 66245,
+        "name": "The Sparks Brothers",
+        "sortableName": "Sparks Brothers, The",
+        "starringActors": "",
+        "directors": "Edgar Wright",
+        "genre": "DOCUMENTARY",
+        "mpaaRating": "R",
+        "wwmReleaseNumber": 315705,
+        "runTime": 141,
+        "score": 0.000495,
+        "slug": "the-sparks-brothers-66245",
+        "synopsis": "How can one rock band be successful, underrated, hugely influential, and criminally overlooked all at the same time? Edgar Wright\u2019s debut documentary THE SPARKS BROTHERS, which features commentary from celebrity fans Flea, Jane Wiedlin, Beck, Jack Antonoff, Jason Schwartzman, Neil Gaiman, and more, takes audiences on a musical odyssey through five weird and wonderful decades with brothers/bandmates Ron and Russell Mael celebrating the inspiring legacy of Sparks: your favorite band\u2019s favorite band.",
+        "releaseDateUtc": "2021-06-18T05:00:00Z",
+        "earliestShowingUtc": "2021-06-17T18:00:00",
+        "hasScheduledShowtimes": true,
+        "onlineTicketAvailabilityDateUtc": "2021-06-18T05:00:00Z",
+        "websiteUrl": "http://www.amctheatres.com/movies/the-sparks-brothers-66245",
+        "showtimesUrl": "http://www.amctheatres.com/movies/the-sparks-brothers-66245/showtimes",
+        "distributorId": 2180,
+        "distributorCode": "FCS",
+        "availableForAList": true,
+        "preferredMediaType": "Theatrical",
+        "privateTheatreRentalTier": "Unavailable",
+        "attributes": [
+          {
+            "code": "AMCARTISANFILMS",
+            "name": "AMC Artisan Films",
+            "description": "AMC Artisan Films"
+          },
+          {
+            "code": "CLOSEDCAPTION",
+            "name": "Closed Caption",
+            "description": "Closed Caption"
+          },
+          {
+            "code": "DESCRIPTIVEVIDEO",
+            "name": "Audio Description",
+            "description": "Audio Description."
+          },
+          {
+            "code": "OPENCAPTION",
+            "name": "Open Caption (On-screen Subtitles)",
+            "description": "A film printed with subtitles."
+          }
+        ],
+        "media": {
+          "posterThumbnail": "",
+          "posterStandard": "",
+          "posterLarge": "",
+          "trailerFlv": "",
+          "trailerHd": "https://graph.amctheatres.com/assets/video/hd/1655482053001/6254844413001.mp4",
+          "trailerMp4": "https://graph.amctheatres.com/assets/video/mobile/1655482053001/6254844413001.mp4",
+          "primaryTrailerExternalVideoId": "6254844413001",
+          "primaryTrailerVideoId": "12004",
+          "heroDesktopDynamic": "https://amc-theatres-res.cloudinary.com/v1620667486/amc-cdn/production/2/movies/66200/66245/HeroDesktopDynamic/124091.jpg",
+          "heroMobileDynamic": "https://amc-theatres-res.cloudinary.com/v1620667486/amc-cdn/production/2/movies/66200/66245/HeroDesktopDynamic/124091.jpg",
+          "posterDynamic": "https://amc-theatres-res.cloudinary.com/v1621620290/amc-cdn/production/2/movies/66200/66245/PosterDynamic/124389.jpg",
+          "posterAlternateDynamic": "",
+          "poster3DDynamic": "",
+          "posterIMAXDynamic": "",
+          "trailerTeaserDynamic": "",
+          "trailerAlternateDynamic": "",
+          "onDemandTrailerVideoId": "",
+          "onDemandTrailerExternalVideoId": "",
+          "onDemandPosterDynamic": "",
+          "onDemandTrailerMp4Dynamic": "",
+          "onDemandTrailerHdDynamic": ""
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.amctheatres.com/v2/movies/66245",
+            "templated": false
+          },
+          "https://api.amctheatres.com/rels/v2/media": {
+            "href": "https://api.amctheatres.com/v2/media/movies/66245/{media-type}",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v2/earliest-showtime": {
+            "href": "https://api.amctheatres.com/v2/theatres/{theatre-id}/movies/66245/earliest-showtime",
+            "templated": true
+          },
+          "https://api.amctheatres.com/rels/v1/cast-crew": {
+            "href": "https://api.amctheatres.com/v1/movie/66245/cast-crew",
+            "templated": false
+          }
+        }
+      }
+    ]
+  }
+}
