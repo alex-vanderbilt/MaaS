@@ -130,4 +130,4 @@ dmypy.json
 .pyre/
 
 # Super Secret API Key stored in:
-app/config.py
+app/AMC/config.py
