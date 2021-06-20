@@ -29,6 +29,7 @@ def database_test_population(cursor, table_name, username, password, email, numb
        favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(table_name),
                    (username, password, email, number, pcm, pt, pmg))
 
+
 def commit_table_updates(db_connection):
     db_connection.commit()
     db_connection.close()
@@ -41,7 +42,7 @@ if __name__ == "__main__":
     crsr = database_connection.cursor()
     print("Please enter: Table Name, username, password, email, phone number, preferred comm method, "
           "favorite theater, favorite movie genre")
-    database_test_population(crsr, input(), input(), input(), input(), input(), input(), input(), input())
+    # database_test_population(crsr, input(), input(), input(), input(), input(), input(), input(), input())
 
     crsr.execute("Select * FROM credentials")
     ans = crsr.fetchall()

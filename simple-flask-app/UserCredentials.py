@@ -4,7 +4,7 @@ import string
 
 class UserCredentials:
     def __init__(self, database_table_name):
-        self.__password_key = "357FD3CC-0DE5-402A-A169-D4EC3EE2B0D4"
+        self.__password_key = "WOOO!!!!!!!!!!"
         self.__table_to_access = database_table_name
         self.__cursor = None
         self.__db_connection = None
