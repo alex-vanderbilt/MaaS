@@ -1,10 +1,12 @@
+import sys
 import sqlite3
 import string
 
 
 class UserCredentials:
-    def __init__(self, database_table_name):
+    def __init__(self, database, database_table_name):
         self.__password_key = "WOOO!!!!!!!!!!"
+        self.__database_to_connect = database
         self.__table_to_access = database_table_name
         self.__cursor = None
         self.__db_connection = None
@@ -12,7 +14,7 @@ class UserCredentials:
     def access_database(self, master_password):
         if self.__password_key == master_password:
             print("Master Password successful, returning connection to the database")
-            self.__db_connection = sqlite3.connect(self.__table_to_access)
+            self.__db_connection = sqlite3.connect(self.__database_to_connect)
             self.__cursor = self.__db_connection.cursor()
             return "Connection Successful"
         else:
@@ -34,11 +36,11 @@ class UserCredentials:
                     print("Wrong password for this username, exiting application")
                     return False
 
-    def populate_table(self, username, password, email, number, pcm, pt, pmg):
-        self.__cursor.execute("""SELECT count(name) FROM sqlite_master WHERE type= 'table' 
+    def populate_table(self, username, password, email, number="None", pcm="None", pt="None", pmg="None"):
+        self.__cursor.execute("""SELECT count(name) FROM sqlite_master WHERE type= 'table'
         AND name = '{}' """.format(self.__table_to_access))
         if self.__cursor.fetchone()[0] == 1:
-            self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, phone_number, 
+            self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, phone_number,
             preferred_comm_method, favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(
                 self.__table_to_access),
                 (username, password, email, number, pcm, pt, pmg))
@@ -53,7 +55,7 @@ class UserCredentials:
                     favorite_movie_genre VARCHAR (10));""".format(self.__table_to_access))
 
             self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, phone_number, preferred_comm_method, 
-                   favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(self.__table_to_access),
+                    favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(self.__table_to_access),
                                 (username, password, email, number, pcm, pt, pmg))
 
     def fetch_entire_table(self):
