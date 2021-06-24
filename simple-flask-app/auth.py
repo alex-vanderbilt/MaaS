@@ -1,6 +1,6 @@
-import sys
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from UserCredentials import UserCredentials
 from authenticateduser import authenticated_user
 
@@ -22,7 +22,6 @@ def login_post():
         for user in database_user_information:
             if name == str(user[0]):
                 authenticated_user.update_user(user[0], user[2], user[3], user[4], user[5], user[6], user[8])
-                # username = user[3] + " " + user[4]
                 return redirect(url_for('main.profile_post'))
     else:
         print("here")

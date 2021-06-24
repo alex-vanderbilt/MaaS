@@ -1,7 +1,7 @@
 import sys
 import sqlite3
 import string
-from werkzeug.security import check_password_hash, generate_password_hash
+from werkzeug.security import check_password_hash
 
 
 class UserCredentials:
@@ -34,27 +34,6 @@ class UserCredentials:
 
     def populate_table(self, username, password, email, first_name="None", last_name="None", number="None", pcm="None",
                        pt="None", pmg="None"):
-        # self.__cursor.execute("""SELECT count(name) FROM sqlite_master WHERE type= 'table'
-        # AND name = '{}' """.format(self.__table_to_access))
-        # if self.__cursor.fetchone()[0] == 1:
-        #     self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name,
-        #                         phone_number, preferred_comm_method, favorite_theater, favorite_movie_genre)
-        #                         VALUES (?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
-        #                                                                                        email, first_name,
-        #                                                                                        last_name, number,
-        #                                                                                        pcm, pt, pmg))
-        # else:
-        #     self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {}(
-        #             login_username VARCHAR(20) PRIMARY KEY,
-        #             password VARCHAR(50),
-        #             e_mail VARCHAR(30),
-        #             first_name VARCHAR(20),
-        #             last_name VARCHAR(30),
-        #             phone_number VARCHAR(10),
-        #             preferred_comm_method CHAR(1),
-        #             favorite_theater VARCHAR(10),
-        #             favorite_movie_genre VARCHAR (10));""".format(self.__table_to_access))
-
         self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name, 
                 phone_number, preferred_comm_method, favorite_theater, favorite_movie_genre) 
                 VALUES (?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
