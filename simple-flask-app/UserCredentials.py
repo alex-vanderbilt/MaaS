@@ -1,6 +1,7 @@
 import sys
 import sqlite3
 import string
+from werkzeug.security import check_password_hash, generate_password_hash
 
 
 class UserCredentials:
@@ -16,6 +17,7 @@ class UserCredentials:
             print("Master Password successful, returning connection to the database")
             self.__db_connection = sqlite3.connect(self.__database_to_connect)
             self.__cursor = self.__db_connection.cursor()
+            self.create_table()
             return "Connection Successful"
         else:
             print("Incorrect Master Password")
@@ -25,38 +27,39 @@ class UserCredentials:
         database_keys = self.fetch_table_duo_column("login_username", "password")
         for db_username, db_password in database_keys:
             if username == db_username:
-                if password == db_password:
+                if check_password_hash(db_password, password):
                     print("Successfully authenticated, Logging in")
                     return True
-                else:
-                    for i in range(3):
-                        print("Incorrect password, try again")
-                        if input() == db_password:
-                            return True
-                    print("Wrong password for this username, exiting application")
-                    return False
+        return False
 
-    def populate_table(self, username, password, email, number="None", pcm="None", pt="None", pmg="None"):
-        self.__cursor.execute("""SELECT count(name) FROM sqlite_master WHERE type= 'table'
-        AND name = '{}' """.format(self.__table_to_access))
-        if self.__cursor.fetchone()[0] == 1:
-            self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, phone_number,
-            preferred_comm_method, favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(
-                self.__table_to_access),
-                (username, password, email, number, pcm, pt, pmg))
-        else:
-            self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {}(
-                    login_username VARCHAR(20) PRIMARY KEY,
-                    password VARCHAR(50),
-                    e_mail VARCHAR(30),
-                    phone_number VARCHAR(10),
-                    preferred_comm_method CHAR(1),
-                    favorite_theater VARCHAR(10),
-                    favorite_movie_genre VARCHAR (10));""".format(self.__table_to_access))
+    def populate_table(self, username, password, email, first_name="None", last_name="None", number="None", pcm="None",
+                       pt="None", pmg="None"):
+        # self.__cursor.execute("""SELECT count(name) FROM sqlite_master WHERE type= 'table'
+        # AND name = '{}' """.format(self.__table_to_access))
+        # if self.__cursor.fetchone()[0] == 1:
+        #     self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name,
+        #                         phone_number, preferred_comm_method, favorite_theater, favorite_movie_genre)
+        #                         VALUES (?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
+        #                                                                                        email, first_name,
+        #                                                                                        last_name, number,
+        #                                                                                        pcm, pt, pmg))
+        # else:
+        #     self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {}(
+        #             login_username VARCHAR(20) PRIMARY KEY,
+        #             password VARCHAR(50),
+        #             e_mail VARCHAR(30),
+        #             first_name VARCHAR(20),
+        #             last_name VARCHAR(30),
+        #             phone_number VARCHAR(10),
+        #             preferred_comm_method CHAR(1),
+        #             favorite_theater VARCHAR(10),
+        #             favorite_movie_genre VARCHAR (10));""".format(self.__table_to_access))
 
-            self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, phone_number, preferred_comm_method, 
-                    favorite_theater, favorite_movie_genre) VALUES (?,?,?,?,?,?,?)""".format(self.__table_to_access),
-                                (username, password, email, number, pcm, pt, pmg))
+        self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name, 
+                phone_number, preferred_comm_method, favorite_theater, favorite_movie_genre) 
+                VALUES (?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
+                                                                               email, first_name, last_name, number,
+                                                                               pcm, pt, pmg))
 
     def fetch_entire_table(self):
         self.__cursor.execute("SELECT * FROM {}".format(self.__table_to_access))
@@ -75,4 +78,25 @@ class UserCredentials:
 
     def commit_changes(self):
         self.__db_connection.commit()
+        # self.__db_connection.close()
+
+    def close_database(self):
         self.__db_connection.close()
+
+    def create_table(self):
+        self.__cursor.execute("""CREATE TABLE IF NOT EXISTS {}(
+                            login_username VARCHAR(20) PRIMARY KEY,
+                            password VARCHAR(255),
+                            e_mail VARCHAR(30),
+                            first_name VARCHAR(20),
+                            last_name VARCHAR(30),
+                            phone_number VARCHAR(10),
+                            preferred_comm_method CHAR(1),
+                            favorite_theater VARCHAR(10),
+                            favorite_movie_genre VARCHAR (10));""".format(self.__table_to_access))
+
+    def truncate_table(self):
+        print(self.fetch_entire_table())
+        self.__cursor.execute("DELETE FROM {}".format(self.__table_to_access))
+        self.commit_changes()
+        print(self.fetch_entire_table())
