@@ -1,11 +1,144 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-Movies as a Service
-</h1>
-<h2 class="subtitle">
-  Movies as a service was designed by Alex Nelson and Jordan Smith as a way to provide movie-goers with a way
-  to easily access and receive information about movies and theaters near them.
-</h2>
+<html lang="en">
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the header */
+header {
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 2;
+  padding: 3px;
+}
+
+.row {
+  display: flex;
+  margin:0 5px;
+ }
+
+.column {
+  flex: 33.33%;
+  padding: 0 px;
+ }
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 550px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+<body>
+
+<h1 style="font-size: 45px"><strong>Movies as a Service</strong></h1>
+<hr/>
+<!--<p>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>-->
+<!--<p>Resize the browser window to see the responsive effect.</p>-->
+<!--<p><strong>Note:</strong> Flexbox is not supported in Internet Explorer 10 and earlier versions.</p>-->
+
+<section>
+  <nav>
+    <ul>
+      <h2 style="text-align: justify;font-size: 16px">
+        MaaS Description:
+      </h2>
+      <h2 style="text-align: justify;font-size: 14px">
+        Movies as a service was designed by Alex Nelson and Jordan Smith as <br/> a way
+        to provide movie-goers with a way  to easily access <br/> and receive information
+        about movies and theaters near them.
+      </h2>
+    </ul>
+  </nav>
+
+  <article>
+    <h3 style="font-size: 30px">Jordan and Alex's Favorite Movies</h3>
+    <div class="row">
+      <div class="column">
+        <img src="https://hbomax-images.warnermediacdn.com/images/GXeF-mg4zu8PCwwEAADwj/tileburnedin?size=1280x720&partner=hbomaxcom&host=artist.api.cdn.hbo.com&w=1280"
+             alt="Lord of the Rings: Return of the King" style="width:350px;height:250px">
+      </div>
+      <div class="column">
+        <img src="https://upload.wikimedia.org/wikipedia/en/d/d8/The_Wolf_of_Wall_Street_%282013%29.png"
+             alt="The Wolf of Wall Street" style="width:250px;height:300px">
+      </div>
+    </div>
+  </article>
+</section>
+<hr />
+<section>
+  <nav>
+      <h2> Popular 2021 Movies: </h2>
+       <ul>
+       <li>A Quiet Place 2</li>
+       <li>Raya and the Last Dragon</li>
+       <li>The Misfits</li>
+       <li>Mortal Kombat</li>
+       </ul>
+    <iframe width="560" height="315" src="{{ link }}" title="YouTube video player"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+  </nav>
+  <article>
+    <div class="row">
+      <div class="column">
+        <img src="https://m.media-amazon.com/images/M/MV5BMTE2ODU4NDEtNmRjNS00OTk1LTg4NmMtNTAzYzVlNzJmYjgzXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_.jpg"
+             alt="A Quiet Place 2" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="https://m.media-amazon.com/images/M/MV5BZWNiOTc4NGItNGY4YS00ZGNkLThkOWEtMDE2ODcxODEwNjkwXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_.jpg"
+             alt="Raya and the Last Dragon" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/11/MisfitsTeaserPoster.jpg/220px-MisfitsTeaserPoster.jpg"
+             alt="The Misfits" style="width:100%">
+      </div>
+      <div class="column">
+        <img src="https://upload.wikimedia.org/wikipedia/en/3/37/Mortal_Kombat_%282021_film%29.png"
+             alt="Mortal Kombat" style="width:100%">
+      </div>
+    </div>
+
+  </article>
+</section>
+</body>
+</html>
+
 {% endblock %}
