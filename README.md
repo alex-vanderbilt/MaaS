@@ -50,3 +50,31 @@ $ flask run
 ```
 
 6. Navigate to: http://127.0.0.1:5000/
+
+### Inserting Data into SQLite3 Table
+Statically:
+```
+sql_command = """CREATE TABLE (insert table name here) (
+val1 TYPE PRIMARY KEY,
+val2 TYPE,
+.,
+.,
+valN TYPE);
+
+sql_command = """INSERT INTO (above table name) VALUES (val1Type,val2Type,...,val3Type);"""
+crsr.execute(sql_command)
+```
+Dynamically:
+```
+sql_command = """CREATE TABLE (insert table name here) (
+val1 TYPE PRIMARY KEY,
+val2 TYPE,
+.,
+.,
+valN TYPE);
+v1 = "something"
+v2 = "in the"
+vN = "water"
+
+crsr.execute("""INSERT INTO credentials (val1, val2, valN) VALUES (?,?,?)""", (val1, val2, valN))
+```
