@@ -1,7 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1 class="title">
-  Welcome, {{ name }}!
+<!--  Welcome, {{ name }}!-->
+  AMC Theaters near zip:
 </h1>
+
+<ul>
+  {% for theater in theater_list %}
+    <li>
+      <span>{{ loop.index }}</span>
+      <span>{{ theater.name }}</span>
+      </li>
+    <li>
+      {{ theater.street_address }}
+      {{ theater.city }}
+      {{ theater.state }}
+      {{ theater.zip_code }}
+    </li><br>
+  {% endfor %}
+</ul>
+
+<hr>
+<h1 class="title">
+<!--  Welcome, {{ name }}!-->
+  Top 10 Current playing movies:
+</h1>
+<ul>
+  {% for movie in movie_list %}
+    <li>
+      <span>{{ loop.index }}</span>
+      <span>{{ movie.name }}</span>
+      </li>
+<!--    <li>{{ movie.actors }}</li>-->
+    <li>{{ movie.director }}</li>
+    <li>{{ movie.genre }}</li><br>
+  {% endfor %}
+</ul>
 {% endblock %}

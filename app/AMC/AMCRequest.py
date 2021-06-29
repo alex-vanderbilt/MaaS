@@ -9,7 +9,7 @@ class AMCRequest:
         self.api_endpoint = "https://api.amctheatres.com"
         self.query_url = None
         self.requests = None
-        self.page_size = 15
+        self.page_size = 10
         self.header = {
             'content-type': 'text',
             'x-amc-vendor-key': api_secret
@@ -36,7 +36,7 @@ class AMCRequest:
             director = movie['directors']
             genre = movie['genre']
             rating = movie['mpaaRating']
-            movie_list.append(AMCMovie(name=name, actors=actors, director=director, genre=genre, rating=rating))
+            movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre=genre.title(), rating=rating))
         return movie_list
 
     def get_locations_via_zip(self, zip_code):
@@ -53,7 +53,7 @@ class AMCRequest:
             phone_num = theater['_embedded']['theatre']['guestServicesPhoneNumber']
             website = theater['_embedded']['theatre']['websiteUrl']
             street_address = theater['_embedded']['theatre']['location']['addressLine1']
-            city = theater['_embedded']['theatre']['location']['city']
+            city = theater['_embedded']['theatre']['location']['city'].title()
             zip_code = theater['_embedded']['theatre']['location']['postalCode']
             state = theater['_embedded']['theatre']['location']['state']
             theater_list.append(AMCLocation(name=name, id=id, website=website, phone_num=phone_num,

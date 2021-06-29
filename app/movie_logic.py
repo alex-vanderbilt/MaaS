@@ -1,4 +1,3 @@
-from AMC.config import api_secret
 from AMC.AMC import AMCMovie
 from AMC.AMCRequest import AMCRequest
 

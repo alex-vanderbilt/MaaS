@@ -23,4 +23,4 @@ class AMCLocation:
         self.zip_code = zip_code
 
     def print_self(self):
-        print('Name: {}. Address: {}, {} {} {}'.format(self.name, self.street_address, self.city.title(), self.state, self.zip_code))
+        print('Name: {}. Address: {}, {} {} {}'.format(self.name, self.street_address, self.city, self.state, self.zip_code))

@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from UserCredentials import UserCredentials
-from authenticateduser import authenticated_user
+from .user_credentials import UserCredentials
+from .user_auth import authenticated_user
 import pyotp
 
 auth = Blueprint('auth', __name__)
@@ -25,13 +25,13 @@ def login_post():
                 authenticated_user.update_user(user[0], user[2], user[3], user[4], user[5], user[6], user[8], user[10])
                 # return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
                 #                         first_name=authenticated_user.first_name))
-                print(user[10])
+                # print(user[10])
                 if user[9] == "false":
                     return redirect(url_for('auth.two_factor_enroll'))
                 else:
                     return redirect(url_for('auth.two_factor_verification'))
     else:
-        print("here")
+        # print("here")
         flash('Please check your login details and try again')
         return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
                                 first_name=authenticated_user.first_name))
@@ -84,8 +84,8 @@ def signup_post():
     database_credentials.populate_table(name, hashed_password, email, first_name, last_name, phone_number,
                                         preferred_comm, favorite_theater, favorite_genre)
     database_credentials.commit_changes()
-    test_print = database_credentials.fetch_entire_table()
-    print(test_print)
+    # test_print = database_credentials.fetch_entire_table()
+    # print(test_print)
 
     return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
                             first_name=authenticated_user.first_name))
@@ -99,7 +99,6 @@ def two_factor_enroll():
     if request.method == 'POST':
         print("here")
         otp = int(request.form.get("otp"))
-        print(authenticated_user.secret_key)
         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
             database_credentials.update_user_enrollment(authenticated_user.username)
             database_credentials.commit_changes()

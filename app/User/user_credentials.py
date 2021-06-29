@@ -95,24 +95,24 @@ class UserCredentials:
         self.__cursor.execute("UPDATE {} SET tfa_enrolled = 'true' WHERE login_username = '{}'".format(
             self.__table_to_access, username))
 
-    # def create_movie_trailer_table(self):
-    #     self.__cursor.execute("""CREATE TABLE IF NOT EXISTS trailer_links(
-    #                                 movie_name VARCHAR(100) PRIMARY KEY,
-    #                                 links VARCHAR(150));""")
-    #
-    # def populate_movie_trailer_table(self):
-    #     self.__cursor.execute("""INSERT INTO trailer_links VALUES('Mortal Kombat',
-    #             'https://www.youtube.com/embed/NYH2sLid0Zc')""")
-    #     self.commit_changes()
-    #     self.__cursor.execute("""INSERT INTO trailer_links VALUES('Raya and the Last Dragon',
-    #             'https://www.youtube.com/embed/1VIZ89FEjYI')""")
-    #     self.commit_changes()
-    #     self.__cursor.execute("""INSERT INTO trailer_links VALUES('The Misfits',
-    #             'https://www.youtube.com/embed/XaXanCUXnJM')""")
-    #     self.commit_changes()
-    #     self.__cursor.execute("""INSERT INTO trailer_links VALUES('A Quiet Place Pt. 2',
-    #             'https://www.youtube.com/embed/BpdDN9d9Jio')""")
-    #     self.commit_changes()
+    def create_movie_trailer_table(self):
+        self.__cursor.execute("""CREATE TABLE IF NOT EXISTS trailer_links(
+                                    movie_name VARCHAR(100) PRIMARY KEY,
+                                    links VARCHAR(150));""")
+
+    def populate_movie_trailer_table(self):
+        self.__cursor.execute("""INSERT INTO trailer_links VALUES('Mortal Kombat',
+                'https://www.youtube.com/embed/NYH2sLid0Zc')""")
+        self.commit_changes()
+        self.__cursor.execute("""INSERT INTO trailer_links VALUES('Raya and the Last Dragon',
+                'https://www.youtube.com/embed/1VIZ89FEjYI')""")
+        self.commit_changes()
+        self.__cursor.execute("""INSERT INTO trailer_links VALUES('The Misfits',
+                'https://www.youtube.com/embed/XaXanCUXnJM')""")
+        self.commit_changes()
+        self.__cursor.execute("""INSERT INTO trailer_links VALUES('A Quiet Place Pt. 2',
+                'https://www.youtube.com/embed/BpdDN9d9Jio')""")
+        self.commit_changes()
 
     def get_new_movie_trailer(self):
         movie_trailers = self.__cursor.execute("SELECT * FROM trailer_links")
