@@ -1,12 +1,11 @@
 import sys
 from flask import Flask
-sys.path.append("C:/Users/jmsm1/Downloads/MaaS-jordan-dev-new/MaaS-jordan-dev-new/simple-flask-app")
-
+from AMC.config import api_secret
 
 def create_app():
     app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'put super secret passcode here'
+    app.config['SECRET_KEY'] = api_secret
 
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint)

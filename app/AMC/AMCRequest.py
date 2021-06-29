@@ -9,7 +9,7 @@ class AMCRequest:
         self.api_endpoint = "https://api.amctheatres.com"
         self.query_url = None
         self.requests = None
-        self.page_size = 25
+        self.page_size = 15
         self.header = {
             'content-type': 'text',
             'x-amc-vendor-key': api_secret
@@ -17,6 +17,8 @@ class AMCRequest:
 
     def request_data(self):
         response = requests.get(self.api_endpoint + self.query_url, headers=self.header)
+        # pretty_json = json.loads(response.text)
+        # print(json.dumps(pretty_json, indent=2))
         try:
             response.raise_for_status()
         except HTTPError:
@@ -40,12 +42,10 @@ class AMCRequest:
     def get_locations_via_zip(self, zip_code):
         self.query_url = '/v2/location-suggestions/?query={}'.format(zip_code)
         zip_code_response = self.request_data()
-        #This may break if we get multiple suggestions for lat/long searches. Not sure if that will ever happen
+        # This may break if we get multiple suggestions for lat/long searches. Not sure if that will ever happen
         lat_long_url = zip_code_response.json()["_embedded"]["suggestions"][0]["_links"]['https://api.amctheatres.com/rels/v2/locations']['href']
         self.query_url = lat_long_url.split(self.api_endpoint)[1] # results in something like /v2/locations?latitude=39.679437&longitude=-104.96473
         lat_lon_response = self.request_data()
-        # pretty_json = json.loads(lat_lon_response.text)
-        # print(json.dumps(pretty_json, indent=2))
         theater_list = []
         for theater in lat_lon_response.json()["_embedded"]["locations"]:
             name = theater['_embedded']['theatre']['name']

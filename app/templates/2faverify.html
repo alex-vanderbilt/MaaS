@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block content %}
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Style the header */
+header {
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 0px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 2;
+  padding: 3px;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 550px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+
+<header>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="jumbotron text-center p-4">
+                <h2>Movies as a Service Two-Factor Authentication</h2>
+                <h5>Setting up TFA</h5>
+            </div>
+        </div>
+    </div>
+</div>
+    <hr/>
+</header>
+<section>
+    <nav>
+        <ul>
+            <div class="col-lg-5">
+            <h5>Instructions!</h5>
+            <ul>
+                <li>Download <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
+                target="_blank">Google Authenticator</a> on your mobile.</li>
+                <li>Enroll your account.</li>
+                <li>Submit the generated OTP in the form for authentication.</li>
+            </ul>
+            </div>
+        </ul>
+    </nav>
+    <article>
+            <div class="col-lg-7">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="otp">Enter Generated OTP</label>
+                        <input type="number" class="form-control" id="otp" name="otp" required>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success">Authenticate Account</button>
+                        <a href="{{ url_for('auth.logout') }}" class="btn btn-danger">Logout</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </article>
+</section>
+{% endblock %}
