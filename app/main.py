@@ -15,7 +15,9 @@ def index():
     database_credentials.access_database("WOOO!!!!!!!!!!")
     # database_credentials.create_movie_trailer_table()
     # database_credentials.populate_movie_trailer_table()
-    return render_template('index.html', verified_user=authenticated_user.verified,
+    requester = AMCRequest()
+    current_movie_list = requester.get_current_movies()
+    return render_template('index.html', verified_user=authenticated_user.verified, movie_list = current_movie_list,
                            first_name=authenticated_user.first_name, link=str(database_credentials.get_new_movie_trailer()))
 
 
@@ -29,7 +31,7 @@ def profile_post():
     requester = AMCRequest()
     theater_list = requester.get_locations_via_zip('90210')
     current_movie_list = requester.get_current_movies()
-    return render_template('profile.html', name=username, theater_list=theater_list, movie_list=current_movie_list, verified_user=authenticated_user.verified,
+    return render_template('profile.html', name=username, theater_list=None, movie_list=current_movie_list, verified_user=authenticated_user.verified,
                            first_name=authenticated_user.first_name)
 
 

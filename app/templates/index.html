@@ -105,13 +105,18 @@ article {
 <hr />
 <section>
   <nav>
-      <h2> Popular 2021 Movies: </h2>
-       <ul>
-       <li>A Quiet Place 2</li>
-       <li>Raya and the Last Dragon</li>
-       <li>The Misfits</li>
-       <li>Mortal Kombat</li>
-       </ul>
+      <h2 style="font-size: 24px"> Popular Current Movies: </h2>
+      <ul>
+        {% for movie in movie_list %}
+          <li>{{ movie.name }}</li>
+        {% endfor %}
+      </ul>
+<!--       <ul>-->
+<!--       <li>A Quiet Place 2</li>-->
+<!--       <li>Raya and the Last Dragon</li>-->
+<!--       <li>The Misfits</li>-->
+<!--       <li>Mortal Kombat</li>-->
+<!--       </ul>-->
     <iframe width="560" height="315" src="{{ link }}" title="YouTube video player"
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>

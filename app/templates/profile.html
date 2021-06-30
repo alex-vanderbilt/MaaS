@@ -2,40 +2,64 @@
 
 {% block content %}
 
+
 <h1 class="title">
 <!--  Welcome, {{ name }}!-->
-  AMC Theaters near zip:
+  {% if theater_list is not none %}
+    AMC Theaters near {{zip_code}}:
+  {% else %}
+    Enter Zip Code to find theaters!
+  {% endif %}
 </h1>
 
+<div class="column is-4 is-offset-4">
+<!--  <div class="box">-->
+    <form method="POST" action="/search">
+      <div class="field">
+        <div class="control">
+          <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
+        </div>
+      </div>
+      <button class="button is-block is-info is-large is-fullwidth">Search</button>
+    </form>
+<!--  </div>-->
+</div>
+
 <ul>
-  {% for theater in theater_list %}
-    <li>
-      <span>{{ loop.index }}</span>
-      <span>{{ theater.name }}</span>
-      </li>
-    <li>
-      {{ theater.street_address }}
-      {{ theater.city }}
-      {{ theater.state }}
-      {{ theater.zip_code }}
-    </li><br>
-  {% endfor %}
+  {% if theater_list is not none %}
+    {% for theater in theater_list %}
+    <div class="box">
+      <li>
+        <span>{{ loop.index }}</span>
+        <span>{{ theater.name }}</span>
+        </li>
+      <li>
+        {{ theater.street_address }}
+        {{ theater.city }}
+        {{ theater.state }}
+        {{ theater.zip_code }}
+      </li><br>
+    </div>
+    {% endfor %}
+  {% else %}
+  <span>We need to check the DB if the user has any saved theater locations</span>
+  {% endif %}
 </ul>
 
-<hr>
-<h1 class="title">
-<!--  Welcome, {{ name }}!-->
-  Top 10 Current playing movies:
-</h1>
-<ul>
-  {% for movie in movie_list %}
-    <li>
-      <span>{{ loop.index }}</span>
-      <span>{{ movie.name }}</span>
-      </li>
-<!--    <li>{{ movie.actors }}</li>-->
-    <li>{{ movie.director }}</li>
-    <li>{{ movie.genre }}</li><br>
-  {% endfor %}
-</ul>
-{% endblock %}
+<!--<hr>-->
+<!--<h1 class="title">-->
+<!--&lt;!&ndash;  Welcome, {{ name }}!&ndash;&gt;-->
+<!--  Top 10 Current playing movies:-->
+<!--</h1>-->
+<!--<ul>-->
+<!--  {% for movie in movie_list %}-->
+<!--    <li>-->
+<!--      <span>{{ loop.index }}</span>-->
+<!--      <span>{{ movie.name }}</span>-->
+<!--      </li>-->
+<!--&lt;!&ndash;    <li>{{ movie.actors }}</li>&ndash;&gt;-->
+<!--    <li>{{ movie.director }}</li>-->
+<!--    <li>{{ movie.genre }}</li><br>-->
+<!--  {% endfor %}-->
+<!--</ul>-->
+<!--{% endblock %}-->
