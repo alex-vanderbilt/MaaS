@@ -1,7 +1,7 @@
 import requests
 from requests.exceptions import HTTPError
 from AMC.config import api_secret
-from AMC.AMC import AMCMovie, AMCLocation
+from AMC.AMC import AMCMovie, AMCLocation, AMCShowing
 import json
 
 class AMCRequest:
@@ -55,7 +55,22 @@ class AMCRequest:
                     street_address=street_address, city=city, state=state, zip_code=zip_code)
 
     def get_showtimes_via_id(self, theater_id):
-        pass
+        self.query_url = '/v2/theatres/{}/showtimes'.format(theater_id)
+        response = self.request_data()
+        showtime_list = []
+        for showtimes in response.json()["_embedded"]["showtimes"]:
+            movie_id = showtimes['movieId']
+            name = showtimes['movieName']
+            genre = showtimes['genre'].title()
+            show_time_local = showtimes['showDateTimeLocal']
+            theater_id = showtimes['theatreId']
+            auditorium = showtimes['auditorium']
+            rating = showtimes['mpaaRating']
+            purchase_url = showtimes['purchaseUrl']
+            movie_url = showtimes['movieUrl']
+            ticket_price_adult = showtimes['ticketPrices'][0]['price']
+            showtime_list.append(AMCShowing(movie_id, name, genre, show_time_local, theater_id, auditorium, rating, purchase_url, movie_url, ticket_price_adult))
+        return showtime_list
 
     def get_locations_via_zip(self, zip_code):
         self.query_url = '/v2/location-suggestions/?query={}'.format(zip_code)
