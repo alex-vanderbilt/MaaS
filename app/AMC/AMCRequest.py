@@ -39,6 +39,24 @@ class AMCRequest:
             movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre=genre.title(), rating=rating))
         return movie_list
 
+    def get_theater_via_id(self, theater_id):
+        self.query_url = '/v2/theatres/{}'.format(theater_id)
+        response = self.request_data()
+        # TODO - handle 404 when theater is not found (bad theater_id)
+        name = response.json()['name']
+        id = response.json()['id']
+        phone_num = response.json()['guestServicesPhoneNumber']
+        website = response.json()['websiteUrl']
+        street_address = response.json()['location']['addressLine1']
+        city = response.json()['location']['city'].title()
+        zip_code = response.json()['location']['postalCode']
+        state = response.json()['location']['state']
+        return AMCLocation(name=name, id=id, website=website, phone_num=phone_num,
+                    street_address=street_address, city=city, state=state, zip_code=zip_code)
+
+    def get_showtimes_via_id(self, theater_id):
+        pass
+
     def get_locations_via_zip(self, zip_code):
         self.query_url = '/v2/location-suggestions/?query={}'.format(zip_code)
         zip_code_response = self.request_data()

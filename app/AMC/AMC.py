@@ -24,3 +24,9 @@ class AMCLocation:
 
     def print_self(self):
         print('Name: {}. Address: {}, {} {} {}'.format(self.name, self.street_address, self.city, self.state, self.zip_code))
+
+
+class AMCShowing:
+    def __init__(self):
+        pass
+        # TODO - implement the logic to grab a specific showtime to notify the user with
