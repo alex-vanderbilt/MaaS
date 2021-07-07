@@ -131,3 +131,5 @@ dmypy.json
 
 # Super Secret API Key stored in:
 app/AMC/config.py
+app/Notifications/twilio_config.py
+
