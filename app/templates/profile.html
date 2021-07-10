@@ -95,6 +95,7 @@
 <ul>
   {% if theater_list is not none %}
     {% for theater in theater_list %}
+	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
     <div class="box">
       <li>
         <span>{{ loop.index }}</span>
@@ -106,6 +107,7 @@
         {{ theater.state }}
         {{ theater.zip_code }}
       </li><br>
+	</div>
     </div>
     {% endfor %}
   {% else %}
