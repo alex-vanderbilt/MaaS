@@ -34,9 +34,10 @@ class AMCRequest:
             name = movie['name']
             actors = movie['starringActors']
             director = movie['directors']
-            genre = movie['genre']
+            # genre = movie['genre']
+            # TODO - handle exception when nothing is found
             rating = movie['mpaaRating']
-            movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre=genre.title(), rating=rating))
+            movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre="None", rating=rating))
         return movie_list
 
     def get_theater_via_id(self, theater_id):
