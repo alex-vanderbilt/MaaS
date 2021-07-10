@@ -1,225 +1,146 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!--<head>-->
-<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">-->
-<!--<style>-->
-<!--body {-->
-<!--    margin: 0;-->
-<!--    padding-top: 40px;-->
-<!--    color: #2e323c;-->
-<!--    background: #f5f6fa;-->
-<!--    position: relative;-->
-<!--    height: 100%;-->
-<!--}-->
-<!--.account-settings .user-profile {-->
-<!--    margin: 0 0 1rem 0;-->
-<!--    padding-bottom: 1rem;-->
-<!--    text-align: center;-->
-<!--}-->
-<!--.account-settings .user-profile .user-avatar {-->
-<!--    margin: 0 0 1rem 0;-->
-<!--}-->
-<!--.account-settings .user-profile .user-avatar img {-->
-<!--    width: 90px;-->
-<!--    height: 90px;-->
-<!--    -webkit-border-radius: 100px;-->
-<!--    -moz-border-radius: 100px;-->
-<!--    border-radius: 100px;-->
-<!--}-->
-<!--.account-settings .user-profile h5.user-name {-->
-<!--    margin: 0 0 0.5rem 0;-->
-<!--}-->
-<!--.account-settings .user-profile h6.user-email {-->
-<!--    margin: 0;-->
-<!--    font-size: 0.8rem;-->
-<!--    font-weight: 400;-->
-<!--    color: #9fa8b9;-->
-<!--}-->
-<!--.account-settings .about {-->
-<!--    margin: 2rem 0 0 0;-->
-<!--    text-align: center;-->
-<!--}-->
-<!--.account-settings .about h5 {-->
-<!--    margin: 0 0 15px 0;-->
-<!--    color: #007ae1;-->
-<!--}-->
-<!--.account-settings .about p {-->
-<!--    font-size: 0.825rem;-->
-<!--}-->
-<!--.form-control {-->
-<!--    border: 1px solid #cfd1d8;-->
-<!--    -webkit-border-radius: 2px;-->
-<!--    -moz-border-radius: 2px;-->
-<!--    border-radius: 2px;-->
-<!--    font-size: .825rem;-->
-<!--    background: #ffffff;-->
-<!--    color: #2e323c;-->
-<!--}-->
 
-<!--.card {-->
-<!--    background: #ffffff;-->
-<!--    -webkit-border-radius: 5px;-->
-<!--    -moz-border-radius: 5px;-->
-<!--    border-radius: 5px;-->
-<!--    border: 0;-->
-<!--    margin-bottom: 1rem;-->
-<!--}-->
-
-<!--</style>-->
-<!--</head>-->
-
-
-<h1 class="title">
-<!--  Welcome, {{ name }}!-->
-  {% if theater_list is not none %}
-    AMC Theaters near {{zip_code}}:
-  {% else %}
-    Enter Zip Code to find theaters!
-  {% endif %}
-</h1>
+<!--<div class="column is-4 is-offset-4">-->
+<!--  <h3 class="title">Sign Up</h3>-->
+<!--  <div class="box">-->
+<!--      <div class="field">-->
+<!--        <div class="control">-->
+<!--          <input class="input is-large" type="text" name="name" placeholder="New Username" autofocus="">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="field">-->
+<!--        <div class="control">-->
+<!--          <input class="input is-large" type="email" name="email" placeholder="Your email" autofocus="">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="column is-4 is-offset-4">
-<!--  <div class="box">-->
-    <form method="POST" action="/search">
-      <div class="field">
-        <div class="control">
-          <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
-        </div>
-      </div>
-      <button class="button is-block is-info is-large is-fullwidth">Search</button>
-    </form>
-<!--  </div>-->
-</div>
-
-<ul>
-  {% if theater_list is not none %}
-    {% for theater in theater_list %}
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-    <div class="box">
-      <li>
-        <span>{{ loop.index }}</span>
-        <span>{{ theater.name }}</span>
-        </li>
-      <li>
-        {{ theater.street_address }}
-        {{ theater.city }}
-        {{ theater.state }}
-        {{ theater.zip_code }}
-      </li><br>
-	</div>
-    </div>
-    {% endfor %}
-  {% else %}
-  <span>We need to check the DB if the user has any saved theater locations</span>
-  {% endif %}
-</ul>
-
-
-<body>
-	<div class="card-body">
-		<div class="account-settings">
-			<div class="user-profile">
-				<h5 class="user-name">Admin</h5>
-<!--				<h6 class="user-email">admin@gmail.com</h6>-->
+  <h3 class="title">User Account</h3>
+	 <div class="box">
+		 <div class="field">
+			 <div class="control">
+				<label class="is-large" for="userName">Username</label>
+					<input class="input is-large" type="text" id="userName" value="admin" readonly>
+			 </div>
+		 </div>
+	 	 <div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="fullName">Full Name</label>
+					<input class="input is-large" type="text" class="form-control" id="fullName" value="Admin Lastname" readonly>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-		<h6 class="mb-2 text-primary">User Details</h6>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="userName">Username</label>
-			<input type="text" class="form-control" id="userName" value="admin" readonly>
+		<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="eMail">Email</label>
+					<input class="input is-large" type="email" class="form-control" id="eMail" value="admin@admin.com" readonly>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="fullName">Full Name</label>
-			<input type="text" class="form-control" id="fullName" value="Admin Lastname" readonly>
+	  	<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input class="input is-large" type="text" class="form-control" id="phone" value="+(1)111-111-1111" readonly>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="eMail">Email</label>
-			<input type="email" class="form-control" id="eMail" value="admin@admin.com" readonly>
+	  	<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="commMethod">Preferred Comm Method</label>
+					<input class="input is-large" type="text" class="form-control" id="commMethod" value="text" readonly>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="phone">Phone</label>
-			<input type="text" class="form-control" id="phone" value="+(1)111-111-1111" readonly>
+		<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="genre">Movie Genre</label>
+					<input class="input is-large" type="text" class="form-control" id="genre" value="Action" readonly>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="commMethod">Preferred Comm Method</label>
-			<input type="text" class="form-control" id="commMethod" value="text" readonly>
-		</div>
-	</div>
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-		<div class="form-group">
-			<label for="genre">Movie Genre</label>
-			<input type="text" class="form-control" id="genre" value="Action" readonly>
-		</div>
-	</div>
-<!--<div class="row gutters">-->
-<!--	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">-->
-<!--		<h6 class="mt-3 mb-2 text-primary">Theater Info</h6>-->
-<!--	</div>-->
-<!--	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">-->
-<!--		<div class="form-group">-->
-<!--			<label for="Street">Street</label>-->
-<!--			<input type="name" class="form-control" id="Street" placeholder="Enter Street">-->
-<!--		</div>-->
-<!--	</div>-->
-<!--	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">-->
-<!--		<div class="form-group">-->
-<!--			<label for="ciTy">City</label>-->
-<!--			<input type="name" class="form-control" id="ciTy" placeholder="Enter City">-->
-<!--		</div>-->
-<!--	</div>-->
-<!--	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">-->
-<!--		<div class="form-group">-->
-<!--			<label for="sTate">State</label>-->
-<!--			<input type="text" class="form-control" id="sTate" placeholder="Enter State">-->
-<!--		</div>-->
-<!--	</div>-->
-<!--	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">-->
-<!--		<div class="form-group">-->
-<!--			<label for="zIp">Zip Code</label>-->
-<!--			<input type="text" class="form-control" id="zIp" placeholder="Zip Code">-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</div>-->
-<div class="row gutters">
-	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-		<div class="text-right">
-			<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>
-			<button type="button" id="submit" name="submit" class="btn btn-primary">Update</button>
-		</div>
-	</div>
+
+<!--		<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
+<!--		<button type="button" id="update" name="update" class="btn btn-primary">Update</button>-->
+
+  	</div>
 </div>
 
-</body>
+<span></span>
 
-<!--<hr>-->
-<!--<h1 class="title">-->
-<!--&lt;!&ndash;  Welcome, {{ name }}!&ndash;&gt;-->
-<!--  Top 10 Current playing movies:-->
-<!--</h1>-->
-<!--<ul>-->
-<!--  {% for movie in movie_list %}-->
-<!--    <li>-->
-<!--      <span>{{ loop.index }}</span>-->
-<!--      <span>{{ movie.name }}</span>-->
-<!--      </li>-->
-<!--&lt;!&ndash;    <li>{{ movie.actors }}</li>&ndash;&gt;-->
-<!--    <li>{{ movie.director }}</li>-->
-<!--    <li>{{ movie.genre }}</li><br>-->
-<!--  {% endfor %}-->
-<!--</ul>-->
-<!--{% endblock %}-->
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Theaters</h3>
+	 <div class="box">
+		<h3 class="mb-2 text-primary">
+		  {% if theater_list is not none %}
+			AMC Theaters near {{zip_code}}:
+		  {% else %}
+			Enter Zip Code to find theaters!
+		  {% endif %}
+		</h3>
+
+			<form method="POST" action="/search">
+			  <div class="field">
+				<div class="control">
+				  <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
+				</div>
+			  </div>
+			  <button class="button is-block is-info is-large is-fullwidth">Search</button>
+			</form>
+
+		<ul>
+		  {% if theater_list is not none %}
+			{% for theater in theater_list %}
+			<div class="box">
+			  <li>
+				<span>{{ loop.index }}</span>
+				<span>{{ theater.name }}</span>
+				</li>
+			  <li>
+				{{ theater.street_address }}
+				{{ theater.city }}
+				{{ theater.state }}
+				{{ theater.zip_code }}
+			  </li><br>
+			</div>
+			{% endfor %}
+		  {% else %}
+		  <span>We need to check the DB if the user has any saved theater locations</span>
+		  {% endif %}
+		</ul>
+ 	</div>
+</div>
 
 
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Showtimes</h3>
+	 <div class="box">
+		<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="dayOfWeek">Day of Week</label>
+					<input class="input is-large" type="text" class="form-control" id="dayOfWeek" placeholder="Monday">
+				</div>
+			</div>
+		</div>
+	 	<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="timeOfDay">Time of Day</label>
+					<input class="input is-large" type="text" class="form-control" id="timeOfDay" placeholder="Evening">
+				</div>
+			</div>
+		</div>
+	 </div>
+</div>
+
+{% endblock %}
