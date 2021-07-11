@@ -43,7 +43,7 @@ article {
   -webkit-flex: 3;
   -ms-flex: 3;
   flex: 2;
-  padding: 3px;
+  padding: 15px;
 }
 
 .row {
@@ -66,62 +66,64 @@ article {
 </style>
 </head>
 
-<div class="column is-4 is-offset-4">
-  <h3 class="title">User Account Information</h3>
-	 <div class="box">
-		 <div class="field">
-			 <div class="control">
-				<label class="is-large" for="userName">Username</label>
-					<input class="input is-large" type="text" id="userName" value={{current_user.username}} disabled="disabled" readonly>
-			 </div>
-		 </div>
-	 	 <div class="field">
-			<div class="control">
-				<div class="form-group">
-					<label for="fullName">Full Name</label>
-					<input class="input is-large" type="text" class="form-control" id="fullName" value={{name}} disabled="disabled" readonly>
-				</div>
-			</div>
-		</div>
-		<div class="field">
-			<div class="control">
-				<div class="form-group">
-					<label for="eMail">Email</label>
-					<input class="input is-large" type="email" class="form-control" id="eMail" value={{current_user.email}} disabled="disabled" readonly>
-				</div>
-			</div>
-		</div>
-	  	<div class = "field">
-			<div class="control">
-				<div class="form-group">
-					<label for="phone">Phone</label>
-					<input class="input is-large" type="text" class="form-control" id="phone" value={{current_user.phone_number}} disabled="disabled" readonly>
-				</div>
-			</div>
-		</div>
-	  	<div class = "field">
-			<div class="control">
-				<div class="form-group">
-					<label for="commMethod">Preferred Communication Method</label>
-					<input class="input is-large" type="text" class="form-control" id="commMethod" value={{current_user.pcm}} disabled="disabled" readonly>
-				</div>
-			</div>
-		</div>
-		<div class = "field">
-			<div class="control">
-				<div class="form-group">
-					<label for="genre">Movie Genre</label>
-					<input class="input is-large" type="text" class="form-control" id="genre" value="Action" disabled="disabled" readonly>
-				</div>
-			</div>
-		</div>
+<header>
+    <div class="column is-4 is-offset-4">
+      <h3 class="title">User Account Information</h3>
+         <div class="box">
+             <div class="field">
+                 <div class="control">
+                    <label class="is-large" for="userName">Username</label>
+                        <input class="input is-large" type="text" id="userName" value={{current_user.username}} disabled="disabled" readonly>
+                 </div>
+             </div>
+             <div class="field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input class="input is-large" type="text" class="form-control" id="fullName" value={{name}} disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="eMail">Email</label>
+                        <input class="input is-large" type="email" class="form-control" id="eMail" value={{current_user.email}} disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class = "field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input class="input is-large" type="text" class="form-control" id="phone" value={{current_user.phone_number}} disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class = "field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="commMethod">Preferred Communication Method</label>
+                        <input class="input is-large" type="text" class="form-control" id="commMethod" value={{current_user.pcm}} disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class = "field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="genre">Movie Genre</label>
+                        <input class="input is-large" type="text" class="form-control" id="genre" value="Action" disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
 
-<!--		<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
-<!--		<button type="button" id="update" name="update" class="btn btn-primary">Update</button>-->
+    <!--		<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
+    <!--		<button type="button" id="update" name="update" class="btn btn-primary">Update</button>-->
 
-  	</div>
-</div>
-<span></span>
+        </div>
+    </div>
+    <span></span>
+</header>
 
 {#<div class="column is-4 is-offset-4">#}
 <!--  <div class="box">-->
@@ -197,7 +199,6 @@ article {
 <!--    <li>{{ movie.genre }}</li><br>-->
 <!--  {% endfor %}-->
 <!--</ul>-->
-<!--{% endblock %}-->
 {#<script>#}
 {#    function addMovieToList(theater_id){#}
 {#        theaterArray.push(theater_id)#}
@@ -212,51 +213,8 @@ article {
 {#    }#}
 {#</script>#}
 
-<div class="column is-4 is-offset-4">
-  <h3 class="title">Theaters</h3>
-	 <div class="box">
-		<h3 class="mb-2 text-primary">
-		  {% if theater_list is not none %}
-			AMC Theaters near {{zip_code}}:
-		  {% else %}
-			Enter Zip Code to find theaters!
-		  {% endif %}
-		</h3>
 
-			<form method="POST" action="/search">
-			  <div class="field">
-				<div class="control">
-				  <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
-				</div>
-			  </div>
-			  <button class="button is-block is-info is-large is-fullwidth">Search</button>
-			</form>
-
-		<ul>
-		  {% if theater_list is not none %}
-			{% for theater in theater_list %}
-			<div class="box">
-			  <li>
-				<span>{{ loop.index }}</span>
-				<span>{{ theater.name }}</span>
-				</li>
-			  <li>
-				{{ theater.street_address }}
-				{{ theater.city }}
-				{{ theater.state }}
-				{{ theater.zip_code }}
-			  </li><br>
-			</div>
-			{% endfor %}
-		  {% else %}
-		  <span>We need to check the DB if the user has any saved theater locations</span>
-		  {% endif %}
-		</ul>
- 	</div>
-</div>
-
-
-<div class="column is-4 is-offset-4">
+<div class="column is-4 is-offset-4" style="padding: 20px">
   <h3 class="title">Preferred Showtime</h3>
 	 <div class="box">
 		<div class="field">

@@ -21,7 +21,8 @@ def index():
     current_movie_list = requester.get_current_movies()
     return render_template('index.html', verified_user=authenticated_user.verified, movie_list = current_movie_list,
                            first_name=authenticated_user.first_name, link=str(database_credentials.get_new_movie_trailer()),
-                           favorited_theater=authenticated_user.theater_string)
+                           favorited_theater=authenticated_user.theater_string,
+                           name=authenticated_user.username)
 
 
 @main.route('/profile/Welcome')
@@ -35,17 +36,32 @@ def profile_post():
     requester = AMCRequest()
     theater_list = requester.get_locations_via_zip('90210')
     current_movie_list = requester.get_current_movies()
-    return render_template('profile.html', name=username, theater_list=None, movie_list=current_movie_list, verified_user=authenticated_user.verified,
+    return render_template('profile.html', name=authenticated_user.username, theater_list=None,
+                           movie_list=current_movie_list, verified_user=authenticated_user.verified,
                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                           is_fav_theater=authenticated_user.favorite_theater_name)
+                           is_fav_theater=authenticated_user.favorite_theater_name,
+                           current_user=authenticated_user)
 
 
 @main.route('/profile')
 def profile():
     if authenticated_user.username is None:
         return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                                name=authenticated_user.username))
     else:
         return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
                                 first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                is_fav_theater=authenticated_user.favorite_theater_name))
+                                is_fav_theater=authenticated_user.favorite_theater_name,
+                                current_user=authenticated_user,
+                                name=authenticated_user.username))
+
+
+@main.route('/developer_console')
+def developer():
+    return render_template('main.profile_post', theater_list=None,
+                           verified_user=authenticated_user.verified, first_name=authenticated_user.first_name,
+                           favorited_theater=authenticated_user.theater_string,
+                           is_fav_theater=authenticated_user.favorite_theater_name,
+                           current_user=authenticated_user,
+                           name=authenticated_user.username)

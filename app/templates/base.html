@@ -39,6 +39,11 @@
                       Logout
                     </a>
                       {% endif %}
+                      {% if name == "admin" and verified_user == "True" %}
+                    <a href="{{ url_for('main.developer') }}" class="navbar-item">
+                      Dev Console
+                    </a>
+                      {% endif %}
                   </div>
                 </div>
               </div>

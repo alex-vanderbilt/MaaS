@@ -1,3 +1,5 @@
+import string
+
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -44,12 +46,13 @@ def search_zip():
                            movie_list=current_movie_list,
                            verified_user=authenticated_user.verified,
                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                           is_fav_theater=authenticated_user.favorite_theater_name)
+                           is_fav_theater=authenticated_user.favorite_theater_name,
+                           current_user=authenticated_user)
 
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    name = str(request.form.get('name'))
+    name = str(request.form.get('name')).lower()
     password = str(request.form.get('password'))
 
     database_credentials = UserCredentials("testDB.db", "user_creds")
@@ -65,40 +68,49 @@ def login_post():
                                                user[11])
                 authenticated_user.theater_string = database_credentials.fetch_users_favorited_theater(
                     authenticated_user.username)
-                if user[10] == "false":
-                    return redirect(url_for('auth.two_factor_enroll'))
-                else:
-                    return redirect(url_for('auth.two_factor_verification'))
+                # if user[10] == "false":
+                #     return redirect(url_for('auth.two_factor_enroll'))
+                # else:
+                #     return redirect(url_for('auth.two_factor_verification'))
+                return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
+                                        first_name=authenticated_user.first_name,
+                                        favorited_theater=authenticated_user.theater_string,
+                                        current_user=authenticated_user,
+                                        name=authenticated_user.username))
     else:
         # print("here")
         flash('Please check your login details and try again')
         return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                                name=authenticated_user.username))
 
 
 @auth.route('/login')
 def login():
     return render_template('login.html', verified_user=authenticated_user.verified,
-                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string)
+                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                           name=authenticated_user.username)
 
 
 @auth.route('/signup')
 def signup():
     return render_template('signup.html', verified_user=authenticated_user.verified,
-                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string)
+                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                           name=authenticated_user.username)
 
 
 @auth.route('/logout')
 def logout():
     authenticated_user.log_out_user()
     return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                            name=authenticated_user.username))
 
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     email = str(request.form.get('email'))
-    name = str(request.form.get('name'))
+    name = str(request.form.get('name')).lower()
     password = str(request.form.get('password'))
     first_name = str(request.form.get('firstName'))
     last_name = str(request.form.get('lastName'))
@@ -118,7 +130,8 @@ def signup_post():
             flash('Username is already in use')
             print('Username is already in use')
             return redirect(url_for('auth.signup', verified_user=authenticated_user.verified,
-                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                                    name=authenticated_user.username))
 
     hashed_password = generate_password_hash(password)
     database_credentials.populate_table(name, hashed_password, email, first_name, last_name, phone_number, zipcode,
@@ -128,7 +141,8 @@ def signup_post():
     # print(test_print)
 
     return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                            name=authenticated_user.username))
 
 
 @auth.route('/2FA/Enrollment', methods=['Get', 'POST'])
@@ -149,7 +163,8 @@ def two_factor_enroll():
             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
             return redirect(url_for('auth.two_factor_enroll'))
 
-    return render_template('2faenroll.html', secret=authenticated_user.secret_key, favorited_theater=authenticated_user.theater_string)
+    return render_template('2faenroll.html', secret=authenticated_user.secret_key, favorited_theater=authenticated_user.theater_string,
+                           name=authenticated_user.username)
 
 
 @auth.route('/2FA/Verification', methods=['Get', 'POST'])
@@ -160,7 +175,9 @@ def two_factor_verification():
         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
             authenticated_user.user_authenticated()
             return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
-                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
+                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                                    current_user=authenticated_user,
+                                    name=authenticated_user.username))
         else:
             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
             return redirect(url_for('auth.two_factor_verification'))
