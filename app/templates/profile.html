@@ -65,18 +65,63 @@ article {
 }
 </style>
 </head>
-{#<script>#}
-{#    const theaterArray = [];#}
-{#</script>#}
 
-<h1 class="title">
-<!--  Welcome, {{ name }}!-->
-  {% if theater_list is not none %}
-    AMC Theaters near {{zip_code}}:
-  {% else %}
-    Enter Zip Code to find theaters!
-  {% endif %}
-</h1>
+<div class="column is-4 is-offset-4">
+  <h3 class="title">User Account Information</h3>
+	 <div class="box">
+		 <div class="field">
+			 <div class="control">
+				<label class="is-large" for="userName">Username</label>
+					<input class="input is-large" type="text" id="userName" value={{current_user.username}} disabled="disabled" readonly>
+			 </div>
+		 </div>
+	 	 <div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="fullName">Full Name</label>
+					<input class="input is-large" type="text" class="form-control" id="fullName" value={{name}} disabled="disabled" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="eMail">Email</label>
+					<input class="input is-large" type="email" class="form-control" id="eMail" value={{current_user.email}} disabled="disabled" readonly>
+				</div>
+			</div>
+		</div>
+	  	<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="phone">Phone</label>
+					<input class="input is-large" type="text" class="form-control" id="phone" value={{current_user.phone_number}} disabled="disabled" readonly>
+				</div>
+			</div>
+		</div>
+	  	<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="commMethod">Preferred Communication Method</label>
+					<input class="input is-large" type="text" class="form-control" id="commMethod" value={{current_user.pcm}} disabled="disabled" readonly>
+				</div>
+			</div>
+		</div>
+		<div class = "field">
+			<div class="control">
+				<div class="form-group">
+					<label for="genre">Movie Genre</label>
+					<input class="input is-large" type="text" class="form-control" id="genre" value="Action" disabled="disabled" readonly>
+				</div>
+			</div>
+		</div>
+
+<!--		<button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button>-->
+<!--		<button type="button" id="update" name="update" class="btn btn-primary">Update</button>-->
+
+  	</div>
+</div>
+<span></span>
 
 {#<div class="column is-4 is-offset-4">#}
 <!--  <div class="box">-->
@@ -166,3 +211,86 @@ article {
 {##}
 {#    }#}
 {#</script>#}
+
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Theaters</h3>
+	 <div class="box">
+		<h3 class="mb-2 text-primary">
+		  {% if theater_list is not none %}
+			AMC Theaters near {{zip_code}}:
+		  {% else %}
+			Enter Zip Code to find theaters!
+		  {% endif %}
+		</h3>
+
+			<form method="POST" action="/search">
+			  <div class="field">
+				<div class="control">
+				  <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
+				</div>
+			  </div>
+			  <button class="button is-block is-info is-large is-fullwidth">Search</button>
+			</form>
+
+		<ul>
+		  {% if theater_list is not none %}
+			{% for theater in theater_list %}
+			<div class="box">
+			  <li>
+				<span>{{ loop.index }}</span>
+				<span>{{ theater.name }}</span>
+				</li>
+			  <li>
+				{{ theater.street_address }}
+				{{ theater.city }}
+				{{ theater.state }}
+				{{ theater.zip_code }}
+			  </li><br>
+			</div>
+			{% endfor %}
+		  {% else %}
+		  <span>We need to check the DB if the user has any saved theater locations</span>
+		  {% endif %}
+		</ul>
+ 	</div>
+</div>
+
+
+<div class="column is-4 is-offset-4">
+  <h3 class="title">Preferred Showtime</h3>
+	 <div class="box">
+		<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="dayOfWeek">Day of Week</label>
+					<select class="input is-large" name="day" id="dayOfWeek">
+						<option value="monday">Monday</option>
+						<option value="tuesday">Tuesday</option>
+						<option value="wednesday">Wednesday</option>
+						<option value="thursday">Thursday</option>
+						<option value="Friday">Friday</option>
+						<option value="Saturday">Saturday</option>
+						<option value="Sunday">Sunday</option>
+					</select>
+				</div>
+			</div>
+		</div>
+	 	<div class="field">
+			<div class="control">
+				<div class="form-group">
+					<label for="timeOfDay">Time of Day</label>
+					<select class="input is-large" name="day" id="timeOfDay">
+						<option value="morning">Morning (8 AM - Noon)</option>
+						<option value="afternoon">Afternoon (Noon - 5 PM)</option>
+						<option value="evening">Evening (5 PM - Midnight)</option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		 <button class="button is-block is-info is-large is-fullwidth">Save</button>
+
+	 </div>
+</div>
+
+{% endblock %}

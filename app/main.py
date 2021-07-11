@@ -27,6 +27,7 @@ def index():
 @main.route('/profile/Welcome')
 def profile_post():
     username = authenticated_user.first_name + " " + authenticated_user.last_name
+
     testMovie = AMCMovie(name="LOTR", actors=["Frodo","Legolas","Boromir"], director="Peter Jackson", genre="Fantasy", rating="PG-13")
     testMovie2 = AMCMovie(name="LOTR", actors=["Frodo", "Legolas", "Boromir"], director="Peter Jackson", genre="Fantasy",
                          rating="PG-13")
