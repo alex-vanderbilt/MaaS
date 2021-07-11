@@ -1,7 +1,73 @@
 {% extends "base.html" %}
 
 {% block content %}
+<head>
+<title>CSS Template</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
 
+/* Style the header */
+header {
+  padding: 30px;
+  text-align: center;
+  font-size: 35px;
+  color: white;
+}
+
+/* Container for flexboxes */
+section {
+  display: -webkit-flex;
+  display: flex;
+}
+
+/* Style the navigation menu */
+nav {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 20px;
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Style the content */
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 2;
+  padding: 3px;
+}
+
+.row {
+  display: flex;
+  margin:0 5px;
+ }
+
+.column {
+  flex: 33.33%;
+  padding: 0px;
+ }
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 550px) {
+  section {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+</style>
+</head>
+{#<script>#}
+{#    const theaterArray = [];#}
+{#</script>#}
 
 <h1 class="title">
 <!--  Welcome, {{ name }}!-->
@@ -12,18 +78,34 @@
   {% endif %}
 </h1>
 
-<div class="column is-4 is-offset-4">
+{#<div class="column is-4 is-offset-4">#}
 <!--  <div class="box">-->
+ <section>
+  <article>
     <form method="POST" action="/search">
       <div class="field">
         <div class="control">
-          <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
+          <input class="input is-large" type="text" name="zip_code"
+                 placeholder="Enter your zipcode" autofocus="">
         </div>
       </div>
       <button class="button is-block is-info is-large is-fullwidth">Search</button>
     </form>
+  </article>
+     <article>
+          <form method="POST" action="/search">
+              <div class="field">
+                  <div class="control">
+                      <input class="input is-large" type="text"
+                             name="favorite" placeholder="Enter Index to favorite" autofocus="">
+                  </div>
+              </div>
+              <button class="button is-block is-info is-large is-fullwidth">Favorite</button>
+          </form>
+      </article>
+  </section>
 <!--  </div>-->
-</div>
+{#</div>#}
 
 <ul>
   {% if theater_list is not none %}
@@ -32,6 +114,14 @@
       <li>
         <span>{{ loop.index }}</span>
         <span>{{ theater.name }}</span>
+        {% if is_fav_theater == theater.name %}
+        <span><input type="image" src="https://media.istockphoto.com/vectors/star-favorite-icon-or-symbol-with-yellow-color-vector-id1124514781?k=6&m=1124514781&s=170667a&w=0&h=CTHqqGRZTm64zax84WKKpQUGf9PXTVzvRgREVZCA-D8="
+        style="width:15px;height:15px" ></span>
+        {% else %}
+        <span><input type="image" src="https://www.iconpacks.net/icons/2/free-favourite-icon-2765-thumb.png"
+        style="width:15px;height:15px" ></span>
+        {% endif %}
+{#        <script>addMovieToList({{theater.id}})</script>#}
         </li>
       <li>
         {{ theater.street_address }}
@@ -63,3 +153,16 @@
 <!--  {% endfor %}-->
 <!--</ul>-->
 <!--{% endblock %}-->
+{#<script>#}
+{#    function addMovieToList(theater_id){#}
+{#        theaterArray.push(theater_id)#}
+{#    }#}
+{##}
+{#    function getTheaterID(){#}
+{##}
+{#    }#}
+{##}
+{#    function getIndex(theater_id){#}
+{##}
+{#    }#}
+{#</script>#}

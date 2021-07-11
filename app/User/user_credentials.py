@@ -37,16 +37,16 @@ class UserCredentials:
                     return True
         return False
 
-    def populate_table(self, username, password, email, first_name="None", last_name="None", number="None", pcm="None",
-                       pt="None", pmg="None"):
+    def populate_table(self, username, password, email, first_name="None", last_name="None", number="None",
+                       zipcode="None", pcm="None", pt="None", pmg="None"):
         enrolled = "false"
         user_otp = pyotp.random_base32()
         self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name, 
-                phone_number, preferred_comm_method, favorite_theater, favorite_movie_genre, tfa_enrolled,
-                tfa_otp) VALUES (?,?,?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
+                phone_number, zipcode, preferred_comm_method, favorite_theater, favorite_movie_genre, tfa_enrolled,
+                tfa_otp) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access), (username, password,
                                                                                             email, first_name,
                                                                                             last_name,
-                                                                                            number,
+                                                                                            number, zipcode,
                                                                                             pcm, pt, pmg, enrolled,
                                                                                             user_otp))
 
@@ -79,8 +79,9 @@ class UserCredentials:
                             first_name VARCHAR(20),
                             last_name VARCHAR(30),
                             phone_number VARCHAR(10),
+                            zipcode INTEGER,
                             preferred_comm_method CHAR(1),
-                            favorite_theater VARCHAR(10),
+                            favorite_theater VARCHAR(255),
                             favorite_movie_genre VARCHAR (10),
                             tfa_enrolled VARCHAR(5),
                             tfa_otp VARCHAR(255));""".format(self.__table_to_access))
@@ -94,6 +95,18 @@ class UserCredentials:
     def update_user_enrollment(self, username):
         self.__cursor.execute("UPDATE {} SET tfa_enrolled = 'true' WHERE login_username = '{}'".format(
             self.__table_to_access, username))
+
+    def update_user_favorite_theather(self, username, updated_theater_information):
+        self.__cursor.execute("UPDATE {} SET favorite_theater = '{}' WHERE login_username = {}".format(
+            self.__table_to_access, updated_theater_information, username))
+        self.commit_changes()
+
+    def fetch_users_favorited_theater(self, username):
+        theater = (self.__cursor.execute("SELECT favorite_theater FROM {} WHERE login_username = '{}'".format(
+            self.__table_to_access, username)).fetchone())
+        for address in theater:
+            return_value = address
+        return return_value
 
     def create_movie_trailer_table(self):
         self.__cursor.execute("""CREATE TABLE IF NOT EXISTS trailer_links(

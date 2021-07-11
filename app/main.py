@@ -13,12 +13,15 @@ main = Blueprint('main', __name__)
 def index():
     database_credentials = UserCredentials("testDB.db", "user_creds")
     database_credentials.access_database("WOOO!!!!!!!!!!")
+    if authenticated_user.authenticated == "False":
+        authenticated_user.log_out_user()
     # database_credentials.create_movie_trailer_table()
     # database_credentials.populate_movie_trailer_table()
     requester = AMCRequest()
     current_movie_list = requester.get_current_movies()
     return render_template('index.html', verified_user=authenticated_user.verified, movie_list = current_movie_list,
-                           first_name=authenticated_user.first_name, link=str(database_credentials.get_new_movie_trailer()))
+                           first_name=authenticated_user.first_name, link=str(database_credentials.get_new_movie_trailer()),
+                           favorited_theater=authenticated_user.theater_string)
 
 
 @main.route('/profile/Welcome')
@@ -32,14 +35,16 @@ def profile_post():
     theater_list = requester.get_locations_via_zip('90210')
     current_movie_list = requester.get_current_movies()
     return render_template('profile.html', name=username, theater_list=None, movie_list=current_movie_list, verified_user=authenticated_user.verified,
-                           first_name=authenticated_user.first_name)
+                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                           is_fav_theater=authenticated_user.favorite_theater_name)
 
 
 @main.route('/profile')
 def profile():
     if authenticated_user.username is None:
         return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name))
+                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string))
     else:
         return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name))
+                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+                                is_fav_theater=authenticated_user.favorite_theater_name))

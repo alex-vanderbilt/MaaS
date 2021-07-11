@@ -1,5 +1,6 @@
 import sys
 from flask import Flask
+sys.path.append("C:/Users/jmsm1/Downloads/MaaS-jordan-dev-new/MaaS/app")
 
 def create_app():
     app = Flask(__name__)

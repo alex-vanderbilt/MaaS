@@ -1,4 +1,3 @@
-
 class AMCMovie:
     def __init__(self, name, actors, director, genre, rating):
         self.name = name

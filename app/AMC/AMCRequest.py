@@ -4,6 +4,7 @@ from AMC.config import api_secret
 from AMC.AMC import AMCMovie, AMCLocation
 import json
 
+
 class AMCRequest:
     def __init__(self):
         self.api_endpoint = "https://api.amctheatres.com"
@@ -31,15 +32,17 @@ class AMCRequest:
         response = self.request_data()
         movie_list = []
         for movie in response.json()["_embedded"]["movies"]:
+            # print(movie)
             name = movie['name']
             actors = movie['starringActors']
             director = movie['directors']
-            genre = movie['genre']
+            # genre = movie['genre']
             rating = movie['mpaaRating']
-            movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre=genre.title(), rating=rating))
+            movie_list.append(AMCMovie(name=name, actors=actors.title(), director=director, genre="None", rating=rating))
         return movie_list
 
     def get_locations_via_zip(self, zip_code):
+        print(zip_code)
         self.query_url = '/v2/location-suggestions/?query={}'.format(zip_code)
         zip_code_response = self.request_data()
         # This may break if we get multiple suggestions for lat/long searches. Not sure if that will ever happen
