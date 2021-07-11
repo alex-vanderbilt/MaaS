@@ -9,14 +9,17 @@ class TextNotification:
         self.body = None
 
     def buildMessageBody(self, amc_showing, amc_location):
-        # This is a test text and a rough outline of how I think things should look. This is dynamcially generated with our code (and the link at the bottom works!).\n\n
+        # This is a test text and a rough outline of how I think things should look. This is dynamically generated with
+        # our code (and the link at the bottom works!)
         self.body = 'Movie Suggestion:\n' \
                     '{} is playing at {} at {}.\n\n' \
-                    'Purchase tickets here: {}'.format(amc_showing.name, amc_location.name, amc_showing.show_time_local, amc_showing.purchase_url)
+                    'Purchase tickets here: {}'\
+                    .format(amc_showing.name, amc_location.name, amc_showing.show_time_local, amc_showing.purchase_url)
 
     '''dest_phone_number: the phone number we are sending our text to, in the following format: +XXXXXXXXXXX
     '''
     def sendText(self, dest_phone_number):
+        print('Sening the following text: {}'.format(self.body))
         self.client.messages.create(body=self.body,
                                     from_=self.from_,
                                     to=dest_phone_number
