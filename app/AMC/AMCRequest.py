@@ -76,7 +76,7 @@ class AMCRequest:
         return showtime_list
 
     def get_locations_via_zip(self, zip_code):
-        print(zip_code)
+        # print(zip_code)
         self.query_url = '/v2/location-suggestions/?query={}'.format(zip_code)
         zip_code_response = self.request_data()
         # This may break if we get multiple suggestions for lat/long searches. Not sure if that will ever happen

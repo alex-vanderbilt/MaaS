@@ -19,7 +19,7 @@ class TextNotification:
     '''dest_phone_number: the phone number we are sending our text to, in the following format: +XXXXXXXXXXX
     '''
     def sendText(self, dest_phone_number):
-        print('Sening the following text: {}'.format(self.body))
+        print('Sending the following text: {}'.format(self.body))
         self.client.messages.create(body=self.body,
                                     from_=self.from_,
                                     to=dest_phone_number

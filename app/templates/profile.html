@@ -1,70 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-<head>
-<title>CSS Template</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
-
-/* Style the header */
-header {
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-
-/* Container for flexboxes */
-section {
-  display: -webkit-flex;
-  display: flex;
-}
-
-/* Style the navigation menu */
-nav {
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-/* Style the content */
-article {
-  -webkit-flex: 3;
-  -ms-flex: 3;
-  flex: 2;
-  padding: 15px;
-}
-
-.row {
-  display: flex;
-  margin:0 5px;
- }
-
-.column {
-  flex: 33.33%;
-  padding: 0px;
- }
-
-/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
-@media (max-width: 550px) {
-  section {
-    -webkit-flex-direction: column;
-    flex-direction: column;
-  }
-}
-</style>
-</head>
 
 <header>
     <div class="column is-4 is-offset-4">
@@ -73,14 +9,14 @@ article {
              <div class="field">
                  <div class="control">
                     <label class="is-large" for="userName">Username</label>
-                        <input class="input is-large" type="text" id="userName" value={{current_user.username}} disabled="disabled" readonly>
+                        <input class="input is-large" type="text" id="userName" value="{{current_user.username}}" disabled="disabled" readonly>
                  </div>
              </div>
              <div class="field">
                 <div class="control">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input class="input is-large" type="text" class="form-control" id="fullName" value={{name}} disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="fullName" value="{{current_user.first_name}} {{current_user.last_name}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -88,7 +24,7 @@ article {
                 <div class="control">
                     <div class="form-group">
                         <label for="eMail">Email</label>
-                        <input class="input is-large" type="email" class="form-control" id="eMail" value={{current_user.email}} disabled="disabled" readonly>
+                        <input class="input is-large" type="email" class="form-control" id="eMail" value="{{current_user.email}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -96,7 +32,7 @@ article {
                 <div class="control">
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input class="input is-large" type="text" class="form-control" id="phone" value={{current_user.phone_number}} disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="phone" value="{{current_user.phone_number}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -104,7 +40,7 @@ article {
                 <div class="control">
                     <div class="form-group">
                         <label for="commMethod">Preferred Communication Method</label>
-                        <input class="input is-large" type="text" class="form-control" id="commMethod" value={{current_user.pcm}} disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="commMethod" value="{{current_user.pcm}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -112,7 +48,7 @@ article {
                 <div class="control">
                     <div class="form-group">
                         <label for="genre">Movie Genre</label>
-                        <input class="input is-large" type="text" class="form-control" id="genre" value="Action" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="genre" value="{{current_user.fmg}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -125,93 +61,49 @@ article {
     <span></span>
 </header>
 
-{#<div class="column is-4 is-offset-4">#}
-<!--  <div class="box">-->
- <section>
-  <article>
-    <form method="POST" action="/search">
-      <div class="field">
-        <div class="control">
-          <input class="input is-large" type="text" name="zip_code"
-                 placeholder="Enter your zipcode" autofocus="">
-        </div>
-      </div>
-      <button class="button is-block is-info is-large is-fullwidth">Search</button>
-    </form>
-  </article>
-     <article>
-          <form method="POST" action="/search">
+
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Theater Information</h3>
+        <div class="box">
+            {% if favorited_theater != "None" and verified_user == "True"%}
+            <div class="field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="favoriteTheater">Current Favorite Theater</label>
+                        <input class="input is-large" type="text" class="form-control" id="favoriteTheater" value="{{favorited_theater}}" disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <form method="POST" action="/search">
               <div class="field">
-                  <div class="control">
-                      <input class="input is-large" type="text"
-                             name="favorite" placeholder="Enter Index to favorite" autofocus="">
-                  </div>
+                <div class="control">
+                    <label for="genre">Search For a Theater</label>
+                    <input class="input is-large" type="text" name="zip_code" placeholder="Enter your zipcode" autofocus="">
+                </div>
               </div>
-              <button class="button is-block is-info is-large is-fullwidth">Favorite</button>
-          </form>
-      </article>
-  </section>
-<!--  </div>-->
-{#</div>#}
-
-<ul>
-  {% if theater_list is not none %}
-    {% for theater in theater_list %}
-    <div class="box">
-      <li>
-        <span>{{ loop.index }}</span>
-        <span>{{ theater.name }}</span>
-        {% if is_fav_theater == theater.name %}
-        <span><input type="image" src="https://media.istockphoto.com/vectors/star-favorite-icon-or-symbol-with-yellow-color-vector-id1124514781?k=6&m=1124514781&s=170667a&w=0&h=CTHqqGRZTm64zax84WKKpQUGf9PXTVzvRgREVZCA-D8="
-        style="width:15px;height:15px" ></span>
-        {% else %}
-        <span><input type="image" src="https://www.iconpacks.net/icons/2/free-favourite-icon-2765-thumb.png"
-        style="width:15px;height:15px" ></span>
-        {% endif %}
-{#        <script>addMovieToList({{theater.id}})</script>#}
-        </li>
-      <li>
-        {{ theater.street_address }}
-        {{ theater.city }}
-        {{ theater.state }}
-        {{ theater.zip_code }}
-      </li><br>
-    </div>
-    {% endfor %}
-  {% else %}
-  <span>We need to check the DB if the user has any saved theater locations</span>
-  {% endif %}
-</ul>
-
-<!--<hr>-->
-<!--<h1 class="title">-->
-<!--&lt;!&ndash;  Welcome, {{ name }}!&ndash;&gt;-->
-<!--  Top 10 Current playing movies:-->
-<!--</h1>-->
-<!--<ul>-->
-<!--  {% for movie in movie_list %}-->
-<!--    <li>-->
-<!--      <span>{{ loop.index }}</span>-->
-<!--      <span>{{ movie.name }}</span>-->
-<!--      </li>-->
-<!--&lt;!&ndash;    <li>{{ movie.actors }}</li>&ndash;&gt;-->
-<!--    <li>{{ movie.director }}</li>-->
-<!--    <li>{{ movie.genre }}</li><br>-->
-<!--  {% endfor %}-->
-<!--</ul>-->
-{#<script>#}
-{#    function addMovieToList(theater_id){#}
-{#        theaterArray.push(theater_id)#}
-{#    }#}
-{##}
-{#    function getTheaterID(){#}
-{##}
-{#    }#}
-{##}
-{#    function getIndex(theater_id){#}
-{##}
-{#    }#}
-{#</script>#}
+              <button class="button is-block is-info is-large is-fullwidth">Search</button>
+            </form>
+            {% if theater_list is not none %}
+            <br>
+            <form method="POST" action="/search">
+             <div class="field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="theaterList">Theaters: </label>
+                        <select class="input is-large" name="theaterList" id="theaterList">
+                            {% for theater in theater_list %}
+                                <option id={{theater.id}} value={{loop.index}}>{{ theater.name }} {{ theater.street_address }} {{ theater.city }} {{ theater.state }} {{ theater.zip_code }}</option>
+                            {% endfor %}s
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth">Save</button>
+            </form>
+            {% endif %}
+      </div>
+</div>
 
 
 <div class="column is-4 is-offset-4" style="padding: 20px">

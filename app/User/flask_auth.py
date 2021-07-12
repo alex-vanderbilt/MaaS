@@ -16,9 +16,10 @@ auth = Blueprint('auth', __name__)
 @auth.route('/search', methods=['POST'])
 def search_zip():
     zip_code = str(request.form.get('zip_code'))
-    request_value = str(request.form.get('favorite'))
-    print(request_value)
-    print(zip_code)
+    request_value = str(request.form.get('theaterList'))
+    # print('Request value: ')
+    # print(request_value)
+    # print(zip_code)
     # TODO - Check this input data from the user. Likely use some zip_code library
     username = authenticated_user.first_name + " " + authenticated_user.last_name
     requester = AMCRequest()
@@ -48,7 +49,6 @@ def search_zip():
                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
                            is_fav_theater=authenticated_user.favorite_theater_name,
                            current_user=authenticated_user)
-
 
 @auth.route('/login', methods=['POST'])
 def login_post():
@@ -151,7 +151,7 @@ def two_factor_enroll():
     database_credentials.access_database("WOOO!!!!!!!!!!")
 
     if request.method == 'POST':
-        print("here")
+        # print("here")
         otp = int(request.form.get("otp"))
         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
             database_credentials.update_user_enrollment(authenticated_user.username)

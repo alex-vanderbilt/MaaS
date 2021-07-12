@@ -42,7 +42,7 @@ if __name__ == "__main__":
 
     crsr.execute("Select * FROM credentials")
     ans = crsr.fetchall()
-    print(ans)
+    # print(ans)
 
     # This is to make it happen for real
     # commit_table_updates(database_connection)

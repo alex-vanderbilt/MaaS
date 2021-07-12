@@ -17,23 +17,23 @@ class UserCredentials:
 
     def access_database(self, master_password):
         if self.__password_key == master_password:
-            print("Master Password successful, returning connection to the database")
+            # print("Master Password successful, returning connection to the database")
             self.__db_connection = sqlite3.connect(self.__database_to_connect)
             self.__cursor = self.__db_connection.cursor()
             self.create_table()
             return "Connection Successful"
         else:
-            print("Incorrect Master Password")
+            # print("Incorrect Master Password")
             return -1
 
     def authenticate_user(self, username, password):
         database_keys = self.fetch_table_duo_column("login_username", "password")
         for db_username, db_password in database_keys:
-            print(db_username)
-            print(db_password)
+            # print(db_username)
+            # print(db_password)
             if username == db_username:
                 if check_password_hash(db_password, password):
-                    print("Successfully authenticated, Logging in")
+                    # print("Successfully authenticated, Logging in")
                     return True
         return False
 
@@ -90,10 +90,10 @@ class UserCredentials:
                             time_of_day VARCHAR (30));""".format(self.__table_to_access))
 
     def truncate_table(self):
-        print(self.fetch_entire_table())
+        # print(self.fetch_entire_table())
         self.__cursor.execute("DELETE FROM {}".format(self.__table_to_access))
         self.commit_changes()
-        print(self.fetch_entire_table())
+        # print(self.fetch_entire_table())
 
     def update_user_enrollment(self, username):
         self.__cursor.execute("UPDATE {} SET tfa_enrolled = 'true' WHERE login_username = '{}'".format(
