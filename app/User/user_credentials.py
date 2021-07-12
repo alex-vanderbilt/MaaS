@@ -38,18 +38,21 @@ class UserCredentials:
         return False
 
     def populate_table(self, username, password, email, first_name="None", last_name="None", number="None",
-                       zipcode="None", pcm="None", pt="None", pmg="None", weekday="None", tod="None"):
+                       zipcode="None", pcm="None", pt="None", pmg="None", weekday="None", tod="None",
+                       theater_name="None"):
         enrolled = "false"
         user_otp = pyotp.random_base32()
         self.__cursor.execute("""INSERT INTO {} (login_username, password, e_mail, first_name, last_name, 
                 phone_number, zipcode, preferred_comm_method, favorite_theater, favorite_movie_genre, tfa_enrolled,
-                tfa_otp, weekday, time_of_day) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)""".format(self.__table_to_access),
-                                                                                            (username, password,
-                                                                                            email, first_name,
-                                                                                            last_name,
-                                                                                            number, zipcode,
-                                                                                            pcm, pt, pmg, enrolled,
-                                                                                            user_otp, weekday, tod))
+                tfa_otp, weekday, time_of_day, theater_name) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""".format(
+            self.__table_to_access),
+            (username, password,
+             email, first_name,
+             last_name,
+             number, zipcode,
+             pcm, pt, pmg, enrolled,
+             user_otp, weekday, tod,
+             theater_name))
 
     def fetch_entire_table(self):
         self.__cursor.execute("SELECT * FROM {}".format(self.__table_to_access))
@@ -99,9 +102,13 @@ class UserCredentials:
         self.__cursor.execute("UPDATE {} SET tfa_enrolled = 'true' WHERE login_username = '{}'".format(
             self.__table_to_access, username))
 
-    def update_user_favorite_theather(self, username, updated_theater_information):
+    def update_user_favorite_theater(self, username, updated_theater_information):
+        name, address, city, state, zipcode = updated_theater_information.split(",")
         self.__cursor.execute("UPDATE {} SET favorite_theater = '{}' WHERE login_username = '{}'".format(
             self.__table_to_access, updated_theater_information, username))
+        self.commit_changes()
+        self.__cursor.execute("UPDATE {} SET theater_name = '{}' WHERE login_username = '{}'".format(
+            self.__table_to_access, name, username))
         self.commit_changes()
 
     def fetch_users_favorited_theater(self, username):
@@ -109,6 +116,13 @@ class UserCredentials:
             self.__table_to_access, username)).fetchone())
         for address in theater:
             return_value = address
+        return return_value
+
+    def fetch_user_theater_name(self, username):
+        theater = (self.__cursor.execute("SELECT theater_name FROM {} WHERE login_username = '{}'".format(
+            self.__table_to_access, username)).fetchone())
+        for name in theater:
+            return_value = name
         return return_value
 
     def create_movie_trailer_table(self):
@@ -131,13 +145,14 @@ class UserCredentials:
         self.commit_changes()
 
     def update_notification_day(self, weekday, username):
-        self.__cursor.execute("UPDATE {} SET weekday = '{}' WHERE login_username = '{}'")
+        self.__cursor.execute("UPDATE {} SET weekday = '{}' WHERE login_username = '{}'".format(self.__table_to_access,
+                                                                                                weekday, username))
         self.commit_changes()
 
     def update_time_of_day(self, tod, username):
         self.__cursor.execute("UPDATE {} SET time_of_day = '{}' WHERE login_username = '{}'".format(
-                                                                                             self.__table_to_access,
-                                                                                             tod, username))
+            self.__table_to_access,
+            tod, username))
 
     def get_new_movie_trailer(self):
         movie_trailers = self.__cursor.execute("SELECT * FROM trailer_links")

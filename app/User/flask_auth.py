@@ -16,7 +16,7 @@ auth = Blueprint('auth', __name__)
 @auth.route('/search', methods=['POST'])
 def search_zip():
     zip_code = str(request.form.get('zip_code'))
-    request_value = str(request.form.get('favorite'))
+    request_value = str(request.form.get('theaterList'))
     print(request_value)
     print(zip_code)
     # TODO - Check this input data from the user. Likely use some zip_code library
@@ -36,18 +36,18 @@ def search_zip():
                 authenticated_user.set_favorited_theater(theater)
             i += 1
     if authenticated_user.favorite_theater != "None":
-        theater_string = authenticated_user.favorite_theater.name + ", " + authenticated_user.favorite_theater.street_address + " " + authenticated_user.favorite_theater.city + " " + authenticated_user.favorite_theater.state + " " + authenticated_user.favorite_theater.zip_code
+        theater_string = authenticated_user.favorite_theater.name + ", " + authenticated_user.favorite_theater.street_address + ", " + authenticated_user.favorite_theater.city + ", " + authenticated_user.favorite_theater.state + ", " + authenticated_user.favorite_theater.zip_code
         authenticated_user.set_theater_information(theater_string)
         database_credentials = UserCredentials("testDB.db", "user_creds")
         database_credentials.access_database("WOOO!!!!!!!!!!")
-        database_credentials.update_user_favorite_theather(authenticated_user.username, theater_string)
+        database_credentials.update_user_favorite_theater(authenticated_user.username, theater_string)
         authenticated_user.favorite_theater_name = authenticated_user.favorite_theater.name
     return render_template('profile.html', name=username, theater_list=theater_list, zip_code=zip_code,
                            movie_list=current_movie_list,
                            verified_user=authenticated_user.verified,
                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                           is_fav_theater=authenticated_user.favorite_theater_name,
-                           current_user=authenticated_user)
+                           current_user=authenticated_user,
+                           is_fav_theater=authenticated_user.favorite_theater_name)
 
 
 @auth.route('/login', methods=['POST'])
@@ -68,6 +68,8 @@ def login_post():
                                                user[11])
                 authenticated_user.theater_string = database_credentials.fetch_users_favorited_theater(
                     authenticated_user.username)
+                authenticated_user.favorite_theater_name = database_credentials.fetch_user_theater_name(
+                    authenticated_user.username)
                 # if user[10] == "false":
                 #     return redirect(url_for('auth.two_factor_enroll'))
                 # else:
@@ -76,6 +78,7 @@ def login_post():
                                         first_name=authenticated_user.first_name,
                                         favorited_theater=authenticated_user.theater_string,
                                         current_user=authenticated_user,
+                                        is_fav_theater=authenticated_user.favorite_theater_name,
                                         name=authenticated_user.username))
     else:
         # print("here")
@@ -177,6 +180,7 @@ def two_factor_verification():
             return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
                                     first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
                                     current_user=authenticated_user,
+                                    is_fav_theater=authenticated_user.favorite_theater_name,
                                     name=authenticated_user.username))
         else:
             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
