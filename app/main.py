@@ -13,8 +13,8 @@ main = Blueprint('main', __name__)
 def index():
     database_credentials = UserCredentials("testDB.db", "user_creds")
     database_credentials.access_database("WOOO!!!!!!!!!!")
-    if authenticated_user.authenticated == "False":
-        authenticated_user.log_out_user()
+    # if authenticated_user.authenticated == "False":
+    #     authenticated_user.log_out_user()
     # database_credentials.create_movie_trailer_table()
     # database_credentials.populate_movie_trailer_table()
     requester = AMCRequest()
@@ -54,7 +54,7 @@ def profile():
                                 first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
                                 is_fav_theater=authenticated_user.favorite_theater_name,
                                 current_user=authenticated_user,
-                                name=authenticated_user.username))
+                                name=authenticated_user.username,))
 
 
 @main.route('/developer_console')
@@ -64,4 +64,5 @@ def developer():
                            favorited_theater=authenticated_user.theater_string,
                            is_fav_theater=authenticated_user.favorite_theater_name,
                            current_user=authenticated_user,
-                           name=authenticated_user.username)
+                           name=authenticated_user.username,
+                           )

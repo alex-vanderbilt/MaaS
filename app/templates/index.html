@@ -53,8 +53,8 @@ article {
  }
 
 .column {
-  flex: 33.33%;
-  padding: 0px;
+  flex: 40.00%;
+  padding: 7px;
  }
 
 /* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
@@ -68,6 +68,7 @@ article {
 </head>
 <body>
 
+<div class="box" style="background-color: dimgray; color: white">
 <h1 style="font-size: 45px"><strong>Movies as a Service</strong></h1>
 <hr/>
 <!--<p>In this example, we have created a header, two columns/boxes and a footer. On smaller screens, the columns will stack on top of each other.</p>-->
@@ -77,12 +78,12 @@ article {
 <section>
   <nav>
     <ul>
-      <h2 style="text-align: justify;font-size: 16px">
+      <h2 style="text-align: justify;font-size: 26px; padding-bottom: 8px">
         MaaS Description:
       </h2>
-      <h2 style="text-align: justify;font-size: 14px">
-        Movies as a service was designed by Alex Nelson and Jordan Smith as <br/> a way
-        to provide movie-goers with a way  to easily access <br/> and receive information
+      <h2 style="text-align: justify;font-size: 18px">
+        Movies as a service was designed by Alex Nelson and Jordan Smith as a way
+        to provide movie-goers with a way  to easily access and receive information
         about movies and theaters near them.
       </h2>
     </ul>
@@ -93,21 +94,23 @@ article {
     <div class="row">
       <div class="column">
         <img src="https://hbomax-images.warnermediacdn.com/images/GXeF-mg4zu8PCwwEAADwj/tileburnedin?size=1280x720&partner=hbomaxcom&host=artist.api.cdn.hbo.com&w=1280"
-             alt="Lord of the Rings: Return of the King" style="width:426px;height:240px">
+             alt="Lord of the Rings: Return of the King" style="width:426px;height:240px;">
       </div>
       <div class="column">
         <img src="https://upload.wikimedia.org/wikipedia/en/d/d8/The_Wolf_of_Wall_Street_%282013%29.png"
-             alt="The Wolf of Wall Street" style="width:265px;height:393px">
+             alt="The Wolf of Wall Street" style="width:265px;height:393px;">
       </div>
     </div>
   </article>
 </section>
+{#</div>#}
+{#<div class="box" style="background-color: sandybrown">#}
 <hr />
 <section>
   <nav>
   <!-- @Note for Alex, make sure you update the list of pictures, lets either keep 8 to 12 -->
       <h2 style="font-size: 24px"> Popular Current Movies: </h2>
-      <ul>
+      <ul style="padding: 15px">
         {% for movie in movie_list %}
           <li>{{ movie.name }}</li>
         {% endfor %}
@@ -144,6 +147,7 @@ article {
 
   </article>
 </section>
+</div>
 </body>
 </html>
 

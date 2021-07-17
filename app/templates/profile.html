@@ -3,7 +3,7 @@
 {% block content %}
 
 <header>
-    <div class="column is-4 is-offset-4">
+    <div class="column is-6 is-offset-3">
       <h3 class="title">User Account Information</h3>
          <div class="box">
              <div class="field">
@@ -62,7 +62,7 @@
 </header>
 
 
-<div class="column is-4 is-offset-4">
+<div class="column is-6 is-offset-3">
     <h3 class="title">Theater Information</h3>
         <div class="box">
             {% if favorited_theater != "None" and verified_user == "True"%}
@@ -93,8 +93,12 @@
                         <label for="theaterList">Theaters: </label>
                         <select class="input is-large" name="theaterList" id="theaterList">
                             {% for theater in theater_list %}
-                                <option id={{theater.id}} value={{loop.index}}>{{ theater.name }} {{ theater.street_address }} {{ theater.city }} {{ theater.state }} {{ theater.zip_code }}</option>
-                            {% endfor %}s
+                                {% if is_fav_theater == theater.name %}
+                                <option value="{{loop.index}}">{{ theater.name }} {{ theater.street_address }} {{ theater.city }} {{ theater.state }} {{ theater.zip_code }}: Favorited</option>
+                                {% else %}
+                                <option value="{{loop.index}}">{{ theater.name }} {{ theater.street_address }} {{ theater.city }} {{ theater.state }} {{ theater.zip_code }}</option>
+                                {% endif %}
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -106,7 +110,7 @@
 </div>
 
 
-<div class="column is-4 is-offset-4" style="padding: 20px">
+<div class="column is-6 is-offset-3" style="padding: 20px">
   <h3 class="title">Preferred Showtime</h3>
 	 <div class="box">
 		<div class="field">
