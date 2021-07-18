@@ -155,7 +155,7 @@ class UserCredentials:
             tod, username))
         
     def fetch_desired_notification_day(self, username):
-        returns self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
+        return self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
             self.__table_to_access, username)).fetchone()
         # Note for Alex - If this fetchone returns a json object uncomment the following code
         # weekday = self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
@@ -164,7 +164,7 @@ class UserCredentials:
         #     return day
         
     def fetch_desired_notification_time(self, username):
-        returns self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
+        return self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
             self.__table_to_access, username)).fetchone()
         # Note for Alex - If this fetchone returns a json object uncomment the following code
         # notification_time = self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
