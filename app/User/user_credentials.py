@@ -153,6 +153,24 @@ class UserCredentials:
         self.__cursor.execute("UPDATE {} SET time_of_day = '{}' WHERE login_username = '{}'".format(
             self.__table_to_access,
             tod, username))
+        
+    def fetch_desired_notification_day(self, username):
+        returns self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
+            self.__table_to_access, username)).fetchone()
+        # Note for Alex - If this fetchone returns a json object uncomment the following code
+        # weekday = self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
+        #     self.__table_to_access, username)).fetchone()
+        # for day in weekday:
+        #     return day
+        
+    def fetch_desired_notification_time(self, username):
+        returns self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
+            self.__table_to_access, username)).fetchone()
+        # Note for Alex - If this fetchone returns a json object uncomment the following code
+        # notification_time = self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
+        #     self.__table_to_access, username)).fetchone()
+        # for time in times:
+        #     return time
 
     def get_new_movie_trailer(self):
         movie_trailers = self.__cursor.execute("SELECT * FROM trailer_links")
