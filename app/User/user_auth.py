@@ -16,6 +16,8 @@ class AuthenticatedUser:
         self.favorite_theater = "None"
         self.favorite_theater_name = "None"
         self.theater_string = "None"
+        self.preferred_time = "None"
+        self.preferred_day = "None"
 
     def update_user(self, username, email, first_name, last_name, phone_number, zipcode, pcm, fmg, sk):
         self.username = username
@@ -38,6 +40,12 @@ class AuthenticatedUser:
 
     def set_theater_information(self, info):
         self.theater_string = info
+
+    def set_day_of_week(self, day):
+        self.preferred_day = day
+
+    def set_time_of_day(self, time):
+        self.preferred_time = time
 
     def log_out_user(self):
         self.username = None
