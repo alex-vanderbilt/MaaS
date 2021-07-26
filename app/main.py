@@ -27,18 +27,10 @@ def index():
 
 @main.route('/profile/Welcome')
 def profile_post():
-    username = authenticated_user.first_name + " " + authenticated_user.last_name
-
-    testMovie = AMCMovie(name="LOTR", actors=["Frodo","Legolas","Boromir"], director="Peter Jackson", genre="Fantasy", rating="PG-13")
-    testMovie2 = AMCMovie(name="LOTR", actors=["Frodo", "Legolas", "Boromir"], director="Peter Jackson", genre="Fantasy",
-                         rating="PG-13")
-    movieList = [testMovie, testMovie2]
     requester = AMCRequest()
-    theater_list = requester.get_locations_via_zip('90210')
     current_movie_list = requester.get_current_movies()
-    return render_template('profile.html', name=authenticated_user.username, theater_list=None,
-                           movie_list=current_movie_list, verified_user=authenticated_user.verified,
-                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    return render_template('profile.html', theater_list=None, verified_user=authenticated_user.verified,
+                           favorited_theater=authenticated_user.theater_string,
                            is_fav_theater=authenticated_user.favorite_theater_name,
                            current_user=authenticated_user)
 

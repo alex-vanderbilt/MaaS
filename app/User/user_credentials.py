@@ -114,16 +114,12 @@ class UserCredentials:
     def fetch_users_favorited_theater(self, username):
         theater = (self.__cursor.execute("SELECT favorite_theater FROM {} WHERE login_username = '{}'".format(
             self.__table_to_access, username)).fetchone())
-        for address in theater:
-            return_value = address
-        return return_value
+        return theater[0]
 
     def fetch_user_theater_name(self, username):
         theater = (self.__cursor.execute("SELECT theater_name FROM {} WHERE login_username = '{}'".format(
             self.__table_to_access, username)).fetchone())
-        for name in theater:
-            return_value = name
-        return return_value
+        return theater[0]
 
     def create_movie_trailer_table(self):
         self.__cursor.execute("""CREATE TABLE IF NOT EXISTS trailer_links(
@@ -144,33 +140,26 @@ class UserCredentials:
                 'https://www.youtube.com/embed/BpdDN9d9Jio')""")
         self.commit_changes()
 
-    def update_notification_day(self, weekday, username):
+    def update_notification_day(self, username, weekday):
         self.__cursor.execute("UPDATE {} SET weekday = '{}' WHERE login_username = '{}'".format(self.__table_to_access,
                                                                                                 weekday, username))
         self.commit_changes()
 
-    def update_time_of_day(self, tod, username):
+    def update_time_of_day(self, username, tod):
         self.__cursor.execute("UPDATE {} SET time_of_day = '{}' WHERE login_username = '{}'".format(
             self.__table_to_access,
             tod, username))
+        self.commit_changes()
         
     def fetch_desired_notification_day(self, username):
-        return self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
+        weekday = self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}'".format(
             self.__table_to_access, username)).fetchone()
-        # Note for Alex - If this fetchone returns a json object uncomment the following code
-        # weekday = self.__cursor.execute("SELECT weekday from {} WHERE login_username = '{}".format(
-        #     self.__table_to_access, username)).fetchone()
-        # for day in weekday:
-        #     return day
+        return weekday[0]
         
     def fetch_desired_notification_time(self, username):
-        return self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
+        times = self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}'".format(
             self.__table_to_access, username)).fetchone()
-        # Note for Alex - If this fetchone returns a json object uncomment the following code
-        # notification_time = self.__cursor.execute("SELECT time_of_day from {} WHERE login_username = '{}".format(
-        #     self.__table_to_access, username)).fetchone()
-        # for time in times:
-        #     return time
+        return times[0]
 
     def get_new_movie_trailer(self):
         movie_trailers = self.__cursor.execute("SELECT * FROM trailer_links")

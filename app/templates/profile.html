@@ -114,12 +114,21 @@
   <h3 class="title">Preferred Showtime</h3>
 	 <div class="box">
         <form method="POST" action="/update_preferences">
+            {% if current_user.preferred_day != "None" and current_user.preferred_time != "None" and verified_user == "True" %}
+            <div class="field">
+                <div class="control">
+                    <div class="form-group">
+                        <label for="favoriteShowtime">Current Preferred Showtime</label>
+                        <input class="input is-large" type="text" class="form-control" id="favoriteShowtime" value="{{current_user.preferred_day}} {{current_user.preferred_time}}" disabled="disabled" readonly>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
             <div class="field">
                 <div class="control">
                     <div class="form-group">
                         <label for="dayOfWeek">Day of Week</label>
                         <select class="input is-large" name="day_of_week" id="dayOfWeek">
-                            {% if current_user.preferred_day == "None" and verified_user == "True"%}
                             <option value="Monday">Monday</option>
                             <option value="Tuesday">Tuesday</option>
                             <option value="Wednesday">Wednesday</option>
@@ -127,11 +136,7 @@
                             <option value="Friday">Friday</option>
                             <option value="Saturday">Saturday</option>
                             <option value="Sunday">Sunday</option>
-                            {% else %}
-                            <option value="{{current_user.preferred_day}}">{{current_user.preferred_day}}</option>
-                            {% endif %}
                         </select>
-
                     </div>
                 </div>
             </div>
@@ -140,18 +145,13 @@
 				<div class="form-group">
 					<label for="timeOfDay">Time of Day</label>
 					<select class="input is-large" name="time_of_day" id="timeOfDay">
-                        {% if current_user.preferred_time == "None" and verified_user == "True"%}
-						<option value="Morning">Morning (8 AM - Noon)</option>
-						<option value="Afternoon">Afternoon (Noon - 5 PM)</option>
-						<option value="Evening">Evening (5 PM - Midnight)</option>
-                        {% else %}
-                        <option value="{{current_user.preferred_time}}">{{current_user.preferred_time}}</option>
-                        {% endif %}
+						<option value="Mornings (8 - Noon)">Morning (8 AM - Noon)</option>
+						<option value="Afternoons (Noon - 5)">Afternoon (Noon - 5 PM)</option>
+						<option value="Evenings (5 - Midnight)">Evening (5 PM - Midnight)</option>
 					</select>
 				</div>
 			</div>
 		</div>
-
 		 <button class="button is-block is-info is-large is-fullwidth">Save</button>
         </form>
 	 </div>

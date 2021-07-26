@@ -12,11 +12,6 @@ from AMC.AMCRequest import AMCRequest
 
 auth = Blueprint('auth', __name__)
 
-#Moving these to global variables so we can change them in one spot when deploying online
-#this may be an unsafe practice, but I'm not sure
-database_credentials = UserCredentials("testDB.db", "user_creds")
-database_credentials.access_database("WOOO!!!!!!!!!!")
-
 
 @auth.route('/search', methods=['POST'])
 def search_zip():
@@ -39,6 +34,8 @@ def search_zip():
     if authenticated_user.favorite_theater != "None":
         theater_string = authenticated_user.favorite_theater.name + ", " + authenticated_user.favorite_theater.street_address + ", " + authenticated_user.favorite_theater.city + ", " + authenticated_user.favorite_theater.state + ", " + authenticated_user.favorite_theater.zip_code
         authenticated_user.set_theater_information(theater_string)
+        database_credentials = UserCredentials("testDB.db", "user_creds")
+        database_credentials.access_database("WOOO!!!!!!!!!!")
         database_credentials.update_user_favorite_theater(authenticated_user.username, theater_string)
         authenticated_user.favorite_theater_name = authenticated_user.favorite_theater.name
     return render_template('profile.html', theater_list=theater_list, zip_code=zip_code,
@@ -51,11 +48,11 @@ def search_zip():
 def save_preferences():
     day_of_week = str(request.form.get('day_of_week'))
     time_of_day = str(request.form.get('time_of_day'))
-    print(day_of_week)
-    print(time_of_day)
     # Because we automatically select "Monday" and "Morning" the form should never return None
-    # database_credentials.update_notification_day(authenticated_user.username, day_of_week)
-    # database_credentials.update_time_of_day(authenticated_user.username, time_of_day)
+    database_credentials = UserCredentials("testDB.db", "user_creds")
+    database_credentials.access_database("WOOO!!!!!!!!!!")
+    database_credentials.update_notification_day(authenticated_user.username, day_of_week)
+    database_credentials.update_time_of_day(authenticated_user.username, time_of_day)
     authenticated_user.set_day_of_week(day_of_week)
     authenticated_user.set_time_of_day(time_of_day)
     zip_code = "None"
@@ -86,6 +83,10 @@ def login_post():
                 authenticated_user.theater_string = database_credentials.fetch_users_favorited_theater(
                     authenticated_user.username)
                 authenticated_user.favorite_theater_name = database_credentials.fetch_user_theater_name(
+                    authenticated_user.username)
+                authenticated_user.preferred_day = database_credentials.fetch_desired_notification_day(
+                    authenticated_user.username)
+                authenticated_user.preferred_time = database_credentials.fetch_desired_notification_time(
                     authenticated_user.username)
                 # if user[10] == "false":
                 #     return redirect(url_for('auth.two_factor_enroll'))
@@ -135,9 +136,9 @@ def signup_post():
     first_name = str(request.form.get('firstName'))
     last_name = str(request.form.get('lastName'))
     phone_number = str(request.form.get('phoneNumber'))
-    zipcode = str(request.form.get('zipcode'))
+    zipcode = "None"
     preferred_comm = str(request.form.get('commMethod'))
-    favorite_theater = "AMC"
+    favorite_theater = "None"
     favorite_genre = str(request.form.get('genre'))
 
     database_credentials = UserCredentials("testDB.db", "user_creds")

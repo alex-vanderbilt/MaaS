@@ -45,17 +45,28 @@
       </div>
       <div class="field">
         <div class="control">
-          <input class="input is-large" type="text" name="zipcode" placeholder="Zipcode" autofocus="">
+<!--          <input class="input is-large" type="text" name="commMethod" placeholder="Pref Comm Method (N or E)" autofocus="">-->
+          <select class="input is-large" name="commMethod" id="commMethod">
+              <option value="none" selected disabled hidden>Communication Preference</option>
+              <option value="Text">Text</option>
+              <option value="Email">Email</option>
+          </select>
         </div>
       </div>
       <div class="field">
         <div class="control">
-          <input class="input is-large" type="text" name="commMethod" placeholder="Pref Comm Method (N or E)" autofocus="">
-        </div>
-      </div>
-      <div class="field">
-        <div class="control">
-          <input class="input is-large" type="text" name="genre" placeholder="Favorite Movie Genre" autofocus="">
+<!--          <input class="input is-large" type="text" name="genre" placeholder="Favorite Movie Genre" autofocus="">-->
+          <select class="input is-large" name="genre" id="genre">
+              <option value="none" selected disabled hidden>Favorite Movie Genre</option>
+              <option value="Action">Action</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Drama">Drama</option>
+              <option value="Fantasy">Fantasy</option>
+              <option value="Horror">Horror</option>
+              <option value="Mystery">Mystery</option>
+              <option value="Romance">Romance</option>
+              <option value="Western">Western</option>
+          </select>
         </div>
       </div>
       <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
