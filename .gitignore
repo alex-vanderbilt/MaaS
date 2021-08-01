@@ -133,3 +133,5 @@ dmypy.json
 app/AMC/config.py
 app/Notifications/twilio_config.py
 
+*.pem
+
