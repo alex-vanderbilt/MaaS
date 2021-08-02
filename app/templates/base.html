@@ -20,7 +20,7 @@
                     </a>
                       {% if verified_user == "True" %}
                     <a href="{{ url_for('main.profile') }}" class="navbar-item">
-                        {{ current_user.username }}
+                        {{ first_name }}
                     </a>
                       {% endif %}
                       {% if verified_user == "False" %}

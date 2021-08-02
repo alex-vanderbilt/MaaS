@@ -53,6 +53,7 @@ def save_preferences():
     database_credentials.access_database("WOOO!!!!!!!!!!")
     database_credentials.update_notification_day(authenticated_user.username, day_of_week)
     database_credentials.update_time_of_day(authenticated_user.username, time_of_day)
+    database_credentials.close_database()
     authenticated_user.set_day_of_week(day_of_week)
     authenticated_user.set_time_of_day(time_of_day)
     zip_code = "None"
@@ -88,6 +89,7 @@ def login_post():
                     authenticated_user.username)
                 authenticated_user.preferred_time = database_credentials.fetch_desired_notification_time(
                     authenticated_user.username)
+                database_credentials.close_database()
                 # if user[10] == "false":
                 #     return redirect(url_for('auth.two_factor_enroll'))
                 # else:
@@ -100,6 +102,7 @@ def login_post():
                                         name=authenticated_user.username))
     else:
         # print("here")
+        database_credentials.close_database()
         flash('Please check your login details and try again')
         return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
                                 first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
@@ -158,6 +161,7 @@ def signup_post():
     database_credentials.populate_table(name, hashed_password, email, first_name, last_name, phone_number, zipcode,
                                         preferred_comm, favorite_theater, favorite_genre)
     database_credentials.commit_changes()
+    database_credentials.close_database()
     # test_print = database_credentials.fetch_entire_table()
     # print(test_print)
 
@@ -177,10 +181,12 @@ def two_factor_enroll():
         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
             database_credentials.update_user_enrollment(authenticated_user.username)
             database_credentials.commit_changes()
+            database_credentials.close_database()
             flash("You have successfully enrolled 2FA for your profile, please authenticate yourself once more!",
                   "success")
             return redirect(url_for('auth.two_factor_verification'))
         else:
+            database_credentials.close_database()
             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
             return redirect(url_for('auth.two_factor_enroll'))
 
