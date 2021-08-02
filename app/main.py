@@ -9,6 +9,20 @@ from AMC.AMCRequest import AMCRequest
 main = Blueprint('main', __name__)
 
 
+
+# application = Flask(__name__)
+# application.config['SECRET_KEY'] = 'put super secret passcode here'
+
+# if __name__ == '__main__':
+    # from User.flask_auth import auth as auth_blueprint
+    # application.register_blueprint(auth_blueprint)
+    #
+    # import main as main_blueprint
+    # application.register_blueprint(main_blueprint)
+
+    # return application
+
+
 @main.route('/')
 def index():
     database_credentials = UserCredentials("testDB.db", "user_creds")

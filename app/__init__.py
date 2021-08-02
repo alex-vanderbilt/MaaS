@@ -1,16 +1,18 @@
-import sys
 from flask import Flask
-sys.path.append("C:/Users/jmsm1/Downloads/MaaS-jordan-dev-new/MaaS/app")
 
-def create_app():
-    app = Flask(__name__)
 
-    app.config['SECRET_KEY'] = 'put super secret passcode here'
+# def create_app():
+app = Flask(__name__)
 
-    from User.flask_auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint)
+app.config['SECRET_KEY'] = 'put super secret passcode here'
 
-    from .main import main as main_blueprint
-    app.register_blueprint(main_blueprint)
+from User.flask_auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
 
-    return app
+from main import main as main_blueprint
+app.register_blueprint(main_blueprint)
+
+# return app
+
+if __name__ == '__main__':
+    app.run(debug=True)
