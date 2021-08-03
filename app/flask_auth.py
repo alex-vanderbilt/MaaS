@@ -149,27 +149,36 @@ def logout():
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     email = str(request.form.get('email'))
-    name = str(request.form.get('name')).lower()
+    username = str(request.form.get('name')).lower()
     password = str(request.form.get('password'))
     first_name = str(request.form.get('firstName'))
     last_name = str(request.form.get('lastName'))
-    phone_number = str(request.form.get('phoneNumber'))
-    zipcode = "None"
-    preferred_comm = str(request.form.get('commMethod'))
-    favorite_theater = "None"
-    favorite_genre = str(request.form.get('genre'))
+    phone_num = str(request.form.get('phoneNumber'))
+    comm_preference = str(request.form.get('commMethod'))
+    fav_genre = str(request.form.get('genre'))
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(username=username).first()
 
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
         flash('Email address already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, username=name, password=generate_password_hash(password, method='sha256'))
+    new_user = User(email=email,
+                    username=username,
+                    password=generate_password_hash(password, method='sha256'),
+                    first_name=first_name,
+                    last_name=last_name,
+                    phone=phone_num,
+                    comm_preference=comm_preference,
+                    fav_genre=fav_genre,
+                    last_searched_zip="None",
+                    favorite_theater="None",
+                    preferred_time="None",
+                    preferred_day="None")
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('auth.login'), username=username)
     # database_credentials = UserCredentials("testDB.db", "user_creds")
     # database_credentials.access_database("WOOO!!!!!!!!!!")
 
@@ -196,44 +205,44 @@ def signup_post():
     #                         name=authenticated_user.username))
 
 
-@auth.route('/2FA/Enrollment', methods=['Get', 'POST'])
-def two_factor_enroll():
-    database_credentials = UserCredentials("testDB.db", "user_creds")
-    database_credentials.access_database("WOOO!!!!!!!!!!")
-
-    if request.method == 'POST':
-        # print("here")
-        otp = int(request.form.get("otp"))
-        if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
-            database_credentials.update_user_enrollment(authenticated_user.username)
-            database_credentials.commit_changes()
-            database_credentials.close_database()
-            flash("You have successfully enrolled 2FA for your profile, please authenticate yourself once more!",
-                  "success")
-            return redirect(url_for('auth.two_factor_verification'))
-        else:
-            database_credentials.close_database()
-            flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
-            return redirect(url_for('auth.two_factor_enroll'))
-
-    return render_template('2faenroll.html', secret=authenticated_user.secret_key, favorited_theater=authenticated_user.theater_string,
-                           name=authenticated_user.username)
-
-
-@auth.route('/2FA/Verification', methods=['Get', 'POST'])
-def two_factor_verification():
-    if request.method == "POST":
-        otp = int(request.form.get("otp"))
-
-        if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
-            authenticated_user.user_authenticated()
-            return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
-                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                    current_user=authenticated_user,
-                                    is_fav_theater=authenticated_user.favorite_theater_name,
-                                    name=authenticated_user.username))
-        else:
-            flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
-            return redirect(url_for('auth.two_factor_verification'))
-
-    return render_template('2faverify.html')
+# @auth.route('/2FA/Enrollment', methods=['Get', 'POST'])
+# def two_factor_enroll():
+#     database_credentials = UserCredentials("testDB.db", "user_creds")
+#     database_credentials.access_database("WOOO!!!!!!!!!!")
+#
+#     if request.method == 'POST':
+#         # print("here")
+#         otp = int(request.form.get("otp"))
+#         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
+#             database_credentials.update_user_enrollment(authenticated_user.username)
+#             database_credentials.commit_changes()
+#             database_credentials.close_database()
+#             flash("You have successfully enrolled 2FA for your profile, please authenticate yourself once more!",
+#                   "success")
+#             return redirect(url_for('auth.two_factor_verification'))
+#         else:
+#             database_credentials.close_database()
+#             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
+#             return redirect(url_for('auth.two_factor_enroll'))
+#
+#     return render_template('2faenroll.html', secret=authenticated_user.secret_key, favorited_theater=authenticated_user.theater_string,
+#                            name=authenticated_user.username)
+#
+#
+# @auth.route('/2FA/Verification', methods=['Get', 'POST'])
+# def two_factor_verification():
+#     if request.method == "POST":
+#         otp = int(request.form.get("otp"))
+#
+#         if pyotp.TOTP(authenticated_user.secret_key).verify(otp):
+#             authenticated_user.user_authenticated()
+#             return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
+#                                     first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+#                                     current_user=authenticated_user,
+#                                     is_fav_theater=authenticated_user.favorite_theater_name,
+#                                     name=authenticated_user.username))
+#         else:
+#             flash("The OTP provided is invalid, it has either expired or was generated using a wrong SECRET!", "danger")
+#             return redirect(url_for('auth.two_factor_verification'))
+#
+#     return render_template('2faverify.html')

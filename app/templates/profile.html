@@ -32,7 +32,7 @@
                 <div class="control">
                     <div class="form-group">
                         <label for="phone">Phone</label>
-                        <input class="input is-large" type="text" class="form-control" id="phone" value="{{current_user.phone_number}}" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="phone" value="{{current_user.phone}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="control">
                     <div class="form-group">
                         <label for="commMethod">Preferred Communication Method</label>
-                        <input class="input is-large" type="text" class="form-control" id="commMethod" value="{{current_user.pcm}}" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="commMethod" value="{{current_user.comm_preference}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 <div class="control">
                     <div class="form-group">
                         <label for="genre">Movie Genre</label>
-                        <input class="input is-large" type="text" class="form-control" id="genre" value="{{current_user.fmg}}" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="genre" value="{{current_user.fav_genre}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
 <div class="column is-6 is-offset-3">
     <h3 class="title">Theater Information</h3>
         <div class="box" style="background-color: #5B646C; color: white;">
-            {% if favorited_theater != "None" and verified_user == "True"%}
+            {% if current_user.favorite_theater != "None"%}
             <div class="field">
                 <div class="control">
                     <div class="form-group">
@@ -114,7 +114,7 @@
   <h3 class="title">Preferred Showtime</h3>
 	 <div class="box" style="background-color: #5B646C; color: white;">
         <form method="POST" action="/update_preferences">
-            {% if current_user.preferred_day != "None" and current_user.preferred_time != "None" and verified_user == "True" %}
+            {% if current_user.preferred_day != "None" and current_user.preferred_time != "None"%}
             <div class="field">
                 <div class="control">
                     <div class="form-group">
