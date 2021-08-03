@@ -5,6 +5,8 @@ from User.user_auth import authenticated_user
 from User.user_credentials import UserCredentials
 from AMC.AMC import AMCMovie
 from AMC.AMCRequest import AMCRequest
+from __init__ import db
+
 
 main = Blueprint('main', __name__)
 

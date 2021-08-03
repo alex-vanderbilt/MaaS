@@ -2,10 +2,12 @@ import string
 
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
+from models import User
 
-from .user_credentials import UserCredentials
-from .user_auth import authenticated_user
+from User.user_credentials import UserCredentials
+from User.user_auth import authenticated_user
 import pyotp
+from __init__ import db
 
 from AMC.AMC import AMCMovie
 from AMC.AMCRequest import AMCRequest
@@ -67,46 +69,57 @@ def save_preferences():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    name = str(request.form.get('name')).lower()
+    username = str(request.form.get('name')).lower()
     password = str(request.form.get('password'))
 
-    database_credentials = UserCredentials("testDB.db", "user_creds")
-    database_credentials.access_database("WOOO!!!!!!!!!!")
+    user = User.query.filter_by(username=username).first()
 
-    login_user = database_credentials.authenticate_user(name, password)
+    if not user or not check_password_hash(user.password, password):
+        flash('Please check your login details and try again.')
+        return redirect(url_for('auth.login'))  # if the user doesn't exist or password is wrong, reload the page
 
-    if login_user:
-        database_user_information = database_credentials.fetch_entire_table()
-        for user in database_user_information:
-            if name == str(user[0]):
-                authenticated_user.update_user(user[0], user[2], user[3], user[4], user[5], user[6], user[7], user[9],
-                                               user[11])
-                authenticated_user.theater_string = database_credentials.fetch_users_favorited_theater(
-                    authenticated_user.username)
-                authenticated_user.favorite_theater_name = database_credentials.fetch_user_theater_name(
-                    authenticated_user.username)
-                authenticated_user.preferred_day = database_credentials.fetch_desired_notification_day(
-                    authenticated_user.username)
-                authenticated_user.preferred_time = database_credentials.fetch_desired_notification_time(
-                    authenticated_user.username)
-                database_credentials.close_database()
-                # if user[10] == "false":
-                #     return redirect(url_for('auth.two_factor_enroll'))
-                # else:
-                #     return redirect(url_for('auth.two_factor_verification'))
-                return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
-                                        first_name=authenticated_user.first_name,
-                                        favorited_theater=authenticated_user.theater_string,
-                                        current_user=authenticated_user,
-                                        is_fav_theater=authenticated_user.favorite_theater_name,
-                                        name=authenticated_user.username))
+        # if the above check passes, then we know the user has the right credentials
     else:
-        # print("here")
-        database_credentials.close_database()
-        flash('Please check your login details and try again')
-        return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                name=authenticated_user.username))
+        print('Logged in successfully')
+        return redirect(url_for('main.profile_post'))
+
+    # database_credentials = UserCredentials("testDB.db", "user_creds")
+    # database_credentials.access_database("WOOO!!!!!!!!!!")
+
+    # login_user = database_credentials.authenticate_user(name, password)
+    #
+    # if login_user:
+    #     database_user_information = database_credentials.fetch_entire_table()
+    #     for user in database_user_information:
+    #         if name == str(user[0]):
+    #             authenticated_user.update_user(user[0], user[2], user[3], user[4], user[5], user[6], user[7], user[9],
+    #                                            user[11])
+    #             authenticated_user.theater_string = database_credentials.fetch_users_favorited_theater(
+    #                 authenticated_user.username)
+    #             authenticated_user.favorite_theater_name = database_credentials.fetch_user_theater_name(
+    #                 authenticated_user.username)
+    #             authenticated_user.preferred_day = database_credentials.fetch_desired_notification_day(
+    #                 authenticated_user.username)
+    #             authenticated_user.preferred_time = database_credentials.fetch_desired_notification_time(
+    #                 authenticated_user.username)
+    #             database_credentials.close_database()
+    #             # if user[10] == "false":
+    #             #     return redirect(url_for('auth.two_factor_enroll'))
+    #             # else:
+    #             #     return redirect(url_for('auth.two_factor_verification'))
+    #             return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
+    #                                     first_name=authenticated_user.first_name,
+    #                                     favorited_theater=authenticated_user.theater_string,
+    #                                     current_user=authenticated_user,
+    #                                     is_fav_theater=authenticated_user.favorite_theater_name,
+    #                                     name=authenticated_user.username))
+    # else:
+    #     # print("here")
+    #     database_credentials.close_database()
+    #     flash('Please check your login details and try again')
+    #     return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
+    #                             first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                             name=authenticated_user.username))
 
 
 @auth.route('/login')
@@ -144,30 +157,41 @@ def signup_post():
     favorite_theater = "None"
     favorite_genre = str(request.form.get('genre'))
 
-    database_credentials = UserCredentials("testDB.db", "user_creds")
-    database_credentials.access_database("WOOO!!!!!!!!!!")
+    user = User.query.filter_by(email=email).first()
 
-    key_in_database = database_credentials.fetch_table_column("login_username")
+    if user:  # if a user is found, we want to redirect back to signup page so user can try again
+        flash('Email address already exists')
+        return redirect(url_for('auth.signup'))
 
-    for entry in key_in_database:
-        if entry == name:
-            flash('Username is already in use')
-            print('Username is already in use')
-            return redirect(url_for('auth.signup', verified_user=authenticated_user.verified,
-                                    first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                    name=authenticated_user.username))
+    new_user = User(email=email, username=name, password=generate_password_hash(password, method='sha256'))
+    db.session.add(new_user)
+    db.session.commit()
 
-    hashed_password = generate_password_hash(password)
-    database_credentials.populate_table(name, hashed_password, email, first_name, last_name, phone_number, zipcode,
-                                        preferred_comm, favorite_theater, favorite_genre)
-    database_credentials.commit_changes()
-    database_credentials.close_database()
+    return redirect(url_for('auth.login'))
+    # database_credentials = UserCredentials("testDB.db", "user_creds")
+    # database_credentials.access_database("WOOO!!!!!!!!!!")
+
+    # key_in_database = database_credentials.fetch_table_column("login_username")
+
+    # for entry in key_in_database:
+    #     if entry == name:
+    #         flash('Username is already in use')
+    #         print('Username is already in use')
+    #         return redirect(url_for('auth.signup', verified_user=authenticated_user.verified,
+    #                                 first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                                 name=authenticated_user.username))
+    #
+    # hashed_password = generate_password_hash(password)
+    # database_credentials.populate_table(name, hashed_password, email, first_name, last_name, phone_number, zipcode,
+    #                                     preferred_comm, favorite_theater, favorite_genre)
+    # database_credentials.commit_changes()
+    # database_credentials.close_database()
     # test_print = database_credentials.fetch_entire_table()
     # print(test_print)
 
-    return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                            name=authenticated_user.username))
+    # return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
+    #                         first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                         name=authenticated_user.username))
 
 
 @auth.route('/2FA/Enrollment', methods=['Get', 'POST'])
