@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 
@@ -21,29 +21,21 @@ def search_zip():
     # TODO - Check this input data from the user. Likely use some zip_code library
     requester = AMCRequest()
     if zip_code != "None":
-        authenticated_user.update_last_zipcode(zip_code)
+        current_user.last_searched_zip = zip_code
+        db.session.commit()
     if zip_code == "None":
-        theater_list = requester.get_locations_via_zip(authenticated_user.last_searched_zipcode)
+        theater_list = requester.get_locations_via_zip(current_user.last_searched_zip)
     else:
         theater_list = requester.get_locations_via_zip(zip_code)
     if request_value != "None":
         i = 1
         for theater in theater_list:
             if i == int(request_value):
-                authenticated_user.set_favorited_theater(theater)
+                current_user.favorite_theater_id = theater.id
+                current_user.favorite_theater_string = theater.name + ", " + theater.street_address + ", " + theater.city + ", " + theater.state + ", " + theater.zip_code
+                db.session.commit()
             i += 1
-    if authenticated_user.favorite_theater != "None":
-        theater_string = authenticated_user.favorite_theater.name + ", " + authenticated_user.favorite_theater.street_address + ", " + authenticated_user.favorite_theater.city + ", " + authenticated_user.favorite_theater.state + ", " + authenticated_user.favorite_theater.zip_code
-        authenticated_user.set_theater_information(theater_string)
-        database_credentials = UserCredentials("testDB.db", "user_creds")
-        database_credentials.access_database("WOOO!!!!!!!!!!")
-        database_credentials.update_user_favorite_theater(authenticated_user.username, theater_string)
-        authenticated_user.favorite_theater_name = authenticated_user.favorite_theater.name
-    return render_template('profile.html', theater_list=theater_list, zip_code=zip_code,
-                           verified_user=authenticated_user.verified,
-                           first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                           current_user=authenticated_user,
-                           is_fav_theater=authenticated_user.favorite_theater_name)
+    return render_template('profile.html', theater_list=theater_list)
 
 @auth.route('/update_preferences', methods=['POST'])
 def save_preferences():
@@ -172,13 +164,14 @@ def signup_post():
                     comm_preference=comm_preference,
                     fav_genre=fav_genre,
                     last_searched_zip="None",
-                    favorite_theater="None",
+                    favorite_theater_id="None",
+                    favorite_theater_string="None",
                     preferred_time="None",
                     preferred_day="None")
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(url_for('auth.login'), username=username)
+    return redirect(url_for('auth.login'))
     # database_credentials = UserCredentials("testDB.db", "user_creds")
     # database_credentials.access_database("WOOO!!!!!!!!!!")
 

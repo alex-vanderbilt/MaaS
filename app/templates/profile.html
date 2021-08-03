@@ -65,12 +65,12 @@
 <div class="column is-6 is-offset-3">
     <h3 class="title">Theater Information</h3>
         <div class="box" style="background-color: #5B646C; color: white;">
-            {% if current_user.favorite_theater != "None"%}
+            {% if current_user.favorite_theater_id != "None"%}
             <div class="field">
                 <div class="control">
                     <div class="form-group">
                         <label for="favoriteTheater">Current Favorite Theater</label>
-                        <input class="input is-large" type="text" class="form-control" id="favoriteTheater" value="{{favorited_theater}}" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="favoriteTheater" value="{{current_user.favorite_theater_string}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>

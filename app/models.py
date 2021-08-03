@@ -13,7 +13,8 @@ class User(UserMixin, db.Model):
     comm_preference = db.Column(db.String(100))
     fav_genre = db.Column(db.String(100))
     last_searched_zip = db.Column(db.String(100))
-    favorite_theater = db.Column(db.String(100))
+    favorite_theater_id = db.Column(db.String(100))
+    favorite_theater_string = db.Column(db.String(1000))
     preferred_time = db.Column(db.String(100))
     preferred_day = db.Column(db.String(100))
 
