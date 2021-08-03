@@ -1,6 +1,5 @@
-import string
-
 from flask import Blueprint, render_template, redirect, url_for, request, flash
+from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 
@@ -71,6 +70,7 @@ def save_preferences():
 def login_post():
     username = str(request.form.get('name')).lower()
     password = str(request.form.get('password'))
+    remember = True if request.form.get('remember') else False
 
     user = User.query.filter_by(username=username).first()
 
@@ -80,8 +80,8 @@ def login_post():
 
         # if the above check passes, then we know the user has the right credentials
     else:
-        print('Logged in successfully')
-        return redirect(url_for('main.profile_post'))
+        login_user(user, remember=remember)
+        return redirect(url_for('main.profile'))
 
     # database_credentials = UserCredentials("testDB.db", "user_creds")
     # database_credentials.access_database("WOOO!!!!!!!!!!")
@@ -138,10 +138,12 @@ def signup():
 
 @auth.route('/logout')
 def logout():
-    authenticated_user.log_out_user()
-    return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                            first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                            name=authenticated_user.username))
+    logout_user()
+    return redirect(url_for('main.index'))
+    # authenticated_user.log_out_user()
+    # return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
+    #                         first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                         name=authenticated_user.username))
 
 
 @auth.route('/signup', methods=['POST'])

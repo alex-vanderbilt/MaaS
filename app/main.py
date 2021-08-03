@@ -1,6 +1,5 @@
-import sys
 from flask import Blueprint, render_template, redirect, url_for
-
+from flask_login import login_required, current_user
 from User.user_auth import authenticated_user
 from User.user_credentials import UserCredentials
 from AMC.AMC import AMCMovie
@@ -56,16 +55,17 @@ def profile_post():
 
 @main.route('/profile')
 def profile():
-    if authenticated_user.username is None:
-        return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                name=authenticated_user.username))
-    else:
-        return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
-                                first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
-                                is_fav_theater=authenticated_user.favorite_theater_name,
-                                current_user=authenticated_user,
-                                name=authenticated_user.username,))
+    return render_template('profile.html', name=current_user.username)
+    # if authenticated_user.username is None:
+    #     return redirect(url_for('auth.login', verified_user=authenticated_user.verified,
+    #                             first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                             name=authenticated_user.username))
+    # else:
+    #     return redirect(url_for('main.profile_post', verified_user=authenticated_user.verified,
+    #                             first_name=authenticated_user.first_name, favorited_theater=authenticated_user.theater_string,
+    #                             is_fav_theater=authenticated_user.favorite_theater_name,
+    #                             current_user=authenticated_user,
+    #                             name=authenticated_user.username,))
 
 
 @main.route('/developer_console')
