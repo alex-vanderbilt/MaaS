@@ -1,5 +1,6 @@
 from twilio.rest import Client
 from Notifications.twilio_config import twilio_account_sid, twilio_auth_token
+from time import sleep
 # from AMC.AMC import AMCShowing, AMCLocation
 
 class TextNotification:
@@ -24,4 +25,14 @@ class TextNotification:
                                     from_=self.from_,
                                     to=dest_phone_number
                                     )
+
+    # def verifyPhone(self, dest_phone_number):
+    #     verification = self.client.verify \
+    #         .services('REPLACE ME') \
+    #         .verifications \
+    #         .create(to='+19169904213', channel='sms')
+    #
+    #     while True:
+    #         print(verification.status)
+    #         sleep(2)
 

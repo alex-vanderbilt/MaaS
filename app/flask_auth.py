@@ -91,7 +91,7 @@ def signup_post():
     user = User.query.filter_by(username=username).first()
 
     if user:  # if a user is found, we want to redirect back to signup page so user can try again
-        flash('Email address already exists')
+        flash('Username already exists')
         return redirect(url_for('auth.signup'))
 
     new_user = User(email=email,
@@ -108,6 +108,19 @@ def signup_post():
                     preferred_time="None",
                     preferred_day="None")
     db.session.add(new_user)
+    # login_user(new_user, remember=False)
     db.session.commit()
 
+    # return render_template('phoneVerify.html')
     return redirect(url_for('auth.login'))
+
+
+# @auth.route('/verify', methods=['POST'])
+# def verify_phone():
+#     verificationNum = str(request.form.get('verificationNum'))
+#
+#     print('verification num:' + verificationNum)
+#     phone = current_user.phone
+#     print('User phone: ' + str(phone))
+#
+#     # return redirect(url_for('auth.login'))
