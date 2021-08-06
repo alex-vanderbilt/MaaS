@@ -1,7 +1,6 @@
 from twilio.rest import Client
-from Notifications.twilio_config import twilio_account_sid, twilio_auth_token
-from time import sleep
-# from AMC.AMC import AMCShowing, AMCLocation
+from Notifications.twilio_config import twilio_account_sid, twilio_auth_token, twilio_verification_service
+
 
 class TextNotification:
     def __init__(self):
@@ -26,13 +25,22 @@ class TextNotification:
                                     to=dest_phone_number
                                     )
 
-    # def verifyPhone(self, dest_phone_number):
-    #     verification = self.client.verify \
-    #         .services('REPLACE ME') \
-    #         .verifications \
-    #         .create(to='+19169904213', channel='sms')
-    #
-    #     while True:
-    #         print(verification.status)
-    #         sleep(2)
+    def init_verification(self, dest_phone_number):
+        verification = self.client.verify \
+            .services(twilio_verification_service) \
+            .verifications \
+            .create(to=dest_phone_number, channel='sms')
 
+        return verification.sid
+
+    def confirm_verification(self, dest_phone_number, verification_code):
+        verification_check = self.client.verify \
+            .services(twilio_verification_service) \
+            .verification_checks \
+            .create(to=dest_phone_number, code=verification_code)
+
+        # print(verification_check.status)
+        if verification_check.status == "approved":
+            return True
+        else:
+            return False

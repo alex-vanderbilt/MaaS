@@ -4,9 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from models import User
 from __init__ import db
 from AMC.AMCRequest import AMCRequest
+from Notifications.notification_service import TextNotification
 
 auth = Blueprint('auth', __name__)
-
+phone_verification_service = TextNotification()
 
 @auth.route('/search', methods=['POST'])
 def search_zip():
@@ -57,8 +58,13 @@ def login_post():
 
         # if the above check passes, then we know the user has the right credentials
     else:
+        user_phone = user.phone
         login_user(user, remember=remember)
-        return redirect(url_for('main.profile'))
+        if user.number_is_verified == "True":
+            return redirect(url_for('main.profile'))
+        else:
+            phone_verification_service.init_verification(user_phone)
+            return render_template('phoneVerify.html')
 
 
 @auth.route('/login')
@@ -100,6 +106,7 @@ def signup_post():
                     first_name=first_name,
                     last_name=last_name,
                     phone=phone_num,
+                    number_is_verified="False",
                     comm_preference=comm_preference,
                     fav_genre=fav_genre,
                     last_searched_zip="None",
@@ -108,19 +115,17 @@ def signup_post():
                     preferred_time="None",
                     preferred_day="None")
     db.session.add(new_user)
-    # login_user(new_user, remember=False)
     db.session.commit()
 
-    # return render_template('phoneVerify.html')
     return redirect(url_for('auth.login'))
 
 
-# @auth.route('/verify', methods=['POST'])
-# def verify_phone():
-#     verificationNum = str(request.form.get('verificationNum'))
-#
-#     print('verification num:' + verificationNum)
-#     phone = current_user.phone
-#     print('User phone: ' + str(phone))
-#
-#     # return redirect(url_for('auth.login'))
+@auth.route('/verify', methods=['POST'])
+def verify_phone():
+    verification_code = str(request.form.get('verificationNum'))
+    is_verified = phone_verification_service.confirm_verification(current_user.phone, verification_code)
+
+    if is_verified:
+        current_user.number_is_verified = "True"
+        db.session.commit()
+    return redirect(url_for('main.profile'))

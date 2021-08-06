@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
-
+from AMC.config import database_secret_key
 from flask_sqlalchemy import SQLAlchemy
 
 # db = SQLAlchemy()
@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 #     app = Flask(__name__)
 #     # login_manager = LoginManager()
 #
-#     app.config['SECRET_KEY'] = 'put super secret passcode here'
+#     app.config['SECRET_KEY'] = database_secret_key
 #     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite'
 #     db.init_app(app)
 #     from flask_auth import auth as auth_blueprint

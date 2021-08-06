@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     first_name = db.Column(db.String(100))
     last_name = db.Column(db.String(100))
     phone = db.Column(db.String(100))
+    number_is_verified = db.Column(db.String(100))
     comm_preference = db.Column(db.String(100))
     fav_genre = db.Column(db.String(100))
     last_searched_zip = db.Column(db.String(100))
