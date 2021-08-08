@@ -25,6 +25,13 @@ class TextNotification:
                                     to=dest_phone_number
                                     )
 
+    def send_sample_text(self, dest_phone_number):
+        self.body = 'Thank you for using Movies as a Service!'
+        self.client.messages.create(body=self.body,
+                                    from_=self.from_,
+                                    to=dest_phone_number
+                                    )
+
     def init_verification(self, dest_phone_number):
         verification = self.client.verify \
             .services(twilio_verification_service) \

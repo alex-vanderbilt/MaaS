@@ -9,6 +9,7 @@ from Notifications.notification_service import TextNotification
 auth = Blueprint('auth', __name__)
 phone_verification_service = TextNotification()
 
+
 @auth.route('/search', methods=['POST'])
 def search_zip():
     zip_code = str(request.form.get('zip_code'))
@@ -34,6 +35,13 @@ def search_zip():
     return render_template('profile.html', theater_list=theater_list)
 
 
+@auth.route('/send_sample', methods=['POST'])
+def send_sample_text():
+    dest_phone = current_user.phone
+    phone_verification_service.send_sample_text(dest_phone)
+    return redirect(url_for('main.profile'))
+
+
 @auth.route('/update_preferences', methods=['POST'])
 def save_preferences():
     day_of_week = str(request.form.get('day_of_week'))
@@ -41,7 +49,8 @@ def save_preferences():
     current_user.preferred_time = time_of_day
     current_user.preferred_day = day_of_week
     db.session.commit()
-    return render_template('profile.html', theater_list=None)
+    return redirect(url_for('main.profile'))
+    # return render_template('profile.html', theater_list=None)
 
 
 @auth.route('/login', methods=['POST'])

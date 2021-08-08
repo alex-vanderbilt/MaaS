@@ -160,20 +160,47 @@
 
 
 {% if current_user.preferred_day != "None" and current_user.preferred_time != "None"%}
+    {% set day = current_user.preferred_day %}
+    {% set time = current_user.preferred_time %}
+    {% set print_day = "Suggestion Time" %}
+    {% set print_time = "Time" %}
+    {% if day == "Monday" %}
+        {% set print_day = "Sunday" %}
+    {% elif day == "Tuesday" %}
+        {% set print_day = "Monday" %}
+    {% elif day == "Wednesday" %}
+        {% set print_day = "Tuesday" %}
+    {% elif day == "Thursday" %}
+        {% set print_day = "Wednesday" %}
+    {% elif day == "Friday" %}
+        {% set print_day = "Thursday" %}
+    {% elif day == "Saturday" %}
+        {% set print_day = "Friday" %}
+    {% elif day == "Sunday" %}
+        {% set print_day = "Saturday" %}
+    {% endif %}
+
+    {% if time == "Mornings (8 - Noon)" %}
+        {% set print_time = "@ 8 AM" %}
+    {% elif time == "Afternoons (Noon - 5)" %}
+        {% set print_time = "@ Noon" %}
+    {% elif time == "Evenings (5 - Midnight)" %}
+        {% set print_time = "@ 5 PM" %}
+    {% endif %}
 <div class="column is-6 is-offset-3" style="padding: 20px">
   <h3 class="title">Movie Suggestions</h3>
 	 <div class="box" style="background-color: #5B646C; color: white;">
-<!--        <form method="POST" action="/update_preferences">-->
+        <form method="POST" action="/send_sample">
             <div class="field">
                 <div class="control">
                     <div class="form-group">
                         <label for="favoriteShowtime">Next Scheduled Movie Suggestion</label>
-                        <input class="input is-large" type="text" class="form-control" id="nextSuggestion" value="Suggestion Time" disabled="disabled" readonly>
+                        <input class="input is-large" type="text" class="form-control" id="nextSuggestion" value="{{print_day}} {{print_time}}" disabled="disabled" readonly>
                     </div>
                 </div>
             </div>
 		 <button class="button is-block is-info is-large is-fullwidth">Send A Sample Text Now</button>
-<!--        </form>-->
+        </form>
 	 </div>
 </div>
 {% endif %}
