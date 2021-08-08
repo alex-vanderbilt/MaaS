@@ -11,7 +11,7 @@ class TextNotification:
     def buildMessageBody(self, amc_showing, amc_location):
         # This is a test text and a rough outline of how I think things should look. This is dynamically generated with
         # our code (and the link at the bottom works!)
-        self.body = 'Movie Suggestion:\n' \
+        self.body = 'Thank you for using Movies as a Service! Here is your movie suggestion:\n\n' \
                     '{} is playing at {} at {}.\n\n' \
                     'Purchase tickets here: {}'\
                     .format(amc_showing.name, amc_location.name, amc_showing.show_time_local, amc_showing.purchase_url)

@@ -38,7 +38,14 @@ def search_zip():
 @auth.route('/send_sample', methods=['POST'])
 def send_sample_text():
     dest_phone = current_user.phone
-    phone_verification_service.send_sample_text(dest_phone)
+    theater_id = current_user.favorite_theater_id
+    requester = AMCRequest()
+    theater = requester.get_theater_via_id(theater_id)
+    showtime_list = requester.get_showtimes_via_id(theater_id)
+
+    phone_verification_service.buildMessageBody(showtime_list[9], theater)
+    phone_verification_service.sendText(dest_phone)
+    # phone_verification_service.send_sample_text(dest_phone)
     return redirect(url_for('main.profile'))
 
 
